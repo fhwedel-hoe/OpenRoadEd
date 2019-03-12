@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>		//debug (convert double to string)
-#include "windows.h"	//debug (OutputDebugString)
+//#include "windows.h"	//debug (OutputDebugString)
 #include <osg/Point>
 #include <osg/Material>
 #include <osg/Texture2D>

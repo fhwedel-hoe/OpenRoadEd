@@ -1,8 +1,8 @@
 #ifndef ROAD_H
 #define ROAD_H
 
-#include <Vector>
-#include <String>
+#include <vector>
+#include <string>
 
 #include "RoadGeometry.h"
 #include "Lane.h"

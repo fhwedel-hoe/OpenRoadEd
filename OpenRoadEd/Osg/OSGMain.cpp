@@ -1,5 +1,5 @@
 #include <sstream>		//debug (convert double to string)
-#include "windows.h"	//debug (OutputDebugString)
+//#include "windows.h"	//debug (OutputDebugString)
 
 
 #include <iostream>
@@ -12,9 +12,10 @@
 #include <osg/MatrixTransform>
 #include <osg/Notify>
 
-#include "osgMain.h"
+#include "OSGMain.h"
 #include "OSGCameraControls.h"
 #include "OSGCameraControls2.h"
+#include <osgGA/KeySwitchMatrixManipulator>
 
 #include "OSGConstants.h"
 
@@ -90,12 +91,12 @@ OSGMain::OSGMain(OpenDrive* openDrive)
 * @param width,height Dimensions of the viewer
 * @param window Window handler
 */
-void OSGMain::initViewer(int x, int y, int width, int height, HWND window)
+void OSGMain::initViewer(int x, int y, int width, int height/*, HWND window*/)
 {
 	mViewer = new osgViewer::Viewer;
 	mViewer->setKeyEventSetsDone(0);
 
-	createContext(x,y,width,height,window);
+    createContext(x,y,width,height/*,window*/);
 
 	//mViewer->setThreadingModel(osgViewer::Viewer::SingleThreaded);
 
@@ -180,7 +181,7 @@ void OSGMain::frame()
 /**
 * Creates the window context
 */
-void OSGMain::createContext(int x, int y, int width, int height, HWND window)
+void OSGMain::createContext(int x, int y, int width, int height/*, HWND window*/)
 {
 	// Sets the properties of the window and prepares it for renderin
 
@@ -205,7 +206,7 @@ void OSGMain::createContext(int x, int y, int width, int height, HWND window)
 	traits->sampleBuffers = ds->getMultiSamples();
 	traits->samples = ds->getNumMultiSamples();
 
-	traits->inheritedWindowData = new WindowData(window);
+    //traits->inheritedWindowData = new WindowData(window);
 
 	if (ds->getStereo())
 	{
@@ -295,9 +296,9 @@ void OSGMain::DrawRoadChordLine()
 	ss<<"Road ChordLine generation completed in "<<osg::Timer::instance()->delta_s(startTick,endTick)<<std::endl;
 	str.append(ss.str());
 	//Output to the debug window
-	OutputDebugString( "\n" ) ;
-	OutputDebugString( str.c_str() ) ;
-	OutputDebugString( "\n" ) ;
+    //OutputDebugString( "\n" ) ;
+    //OutputDebugString( str.c_str() ) ;
+    //OutputDebugString( "\n" ) ;
 }
 
 
@@ -369,9 +370,9 @@ void OSGMain::DrawRoads()
 	ss<<"Road generation completed in "<<osg::Timer::instance()->delta_s(startTick,endTick)<<std::endl;
 	str.append(ss.str());
 	//Output to the debug window
-	OutputDebugString( "\n" ) ;
-	OutputDebugString( str.c_str() ) ;
-	OutputDebugString( "\n" ) ;
+    //OutputDebugString( "\n" ) ;
+    //OutputDebugString( str.c_str() ) ;
+    //OutputDebugString( "\n" ) ;
 }
 
 
@@ -463,9 +464,9 @@ void OSGMain::DrawJunctions()
 	ss<<"Junction generation completed in "<<osg::Timer::instance()->delta_s(startTick,endTick)<<std::endl;
 	str.append(ss.str());
 	//Output to the debug window
-	OutputDebugString( "\n" ) ;
-	OutputDebugString( str.c_str() ) ;
-	OutputDebugString( "\n" ) ;
+    //OutputDebugString( "\n" ) ;
+    //OutputDebugString( str.c_str() ) ;
+    //OutputDebugString( "\n" ) ;
 }
 
 /**
@@ -525,9 +526,9 @@ void OSGMain::DrawScenery(std::string heightMapFile, std::string terrainFile, do
 	ss<<"HeightMap generation completed in "<<osg::Timer::instance()->delta_s(startTick,endTick)<<std::endl;
 	str.append(ss.str());
 	//Output to the debug window
-	OutputDebugString( "\n" ) ;
-	OutputDebugString( str.c_str() ) ;
-	OutputDebugString( "\n" ) ;
+    //OutputDebugString( "\n" ) ;
+    //OutputDebugString( str.c_str() ) ;
+    //OutputDebugString( "\n" ) ;
 
 	/////////////////////////////////////////////////////////////////////////////////////
 	//start Timer for statistics
@@ -549,9 +550,9 @@ void OSGMain::DrawScenery(std::string heightMapFile, std::string terrainFile, do
 	ss2<<"Scenery generation completed in "<<osg::Timer::instance()->delta_s(startTick,endTick)<<std::endl;
 	str2.append(ss2.str());
 	//Output to the debug window
-	OutputDebugString( "\n" ) ;
-	OutputDebugString( str2.c_str() ) ;
-	OutputDebugString( "\n" ) ;
+    //OutputDebugString( "\n" ) ;
+    //OutputDebugString( str2.c_str() ) ;
+    //OutputDebugString( "\n" ) ;
 }
 
 /**
@@ -796,7 +797,7 @@ OSGObjectNode* OSGMain::PickNode(float x, float y)
 		if (!hit->nodePath.empty())
 		{
 			//Get the path to the picked node
-			osg::NodePath* nodePath=&(hit->nodePath);
+            const osg::NodePath* nodePath=&(hit->nodePath);
 
 			//Get the selected object
 			osg::Node* node = nodePath->back();
@@ -916,9 +917,9 @@ OSGObjectNode* OSGMain::PickNode(float x, float y)
 					ss<<"Picked in "<<osg::Timer::instance()->delta_s(startTick,endTick)<<std::endl;
 					str.append(ss.str());
 					//Output to the debug window
-					OutputDebugString( "\n" ) ;
-					OutputDebugString( str.c_str() ) ;
-					OutputDebugString( "\n" ) ;
+                    //OutputDebugString( "\n" ) ;
+                    //OutputDebugString( str.c_str() ) ;
+                    //OutputDebugString( "\n" ) ;
 
 				}
 				///////////////////////////////////////////////

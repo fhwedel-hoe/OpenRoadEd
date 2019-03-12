@@ -1,8 +1,8 @@
 #ifndef OPENDRIVE_H
 #define OPENDRIVE_H
 
-#include <Vector>
-#include <String>
+#include <vector>
+#include <string>
 
 #include "Road.h"
 //--Prototypes--

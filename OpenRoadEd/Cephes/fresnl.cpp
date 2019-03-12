@@ -455,7 +455,7 @@ extern "C" {double p1evl ( double, double *, int );}
 #else
 double fabs(), cos(), sin(), polevl(), p1evl();
 #endif
-extern "C" {double PI, PIO2, MACHEP;}
+extern "C" {extern double PI, PIO2, MACHEP;}
 
 //int fresnl( xxa, ssa, cca )
 //double xxa, *ssa, *cca;

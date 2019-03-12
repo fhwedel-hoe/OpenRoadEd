@@ -129,13 +129,13 @@ public:
 	 * Return the pointer to the last junction connection
 	 * @return A pointer to JunctionConnection object
 	 */
-	JunctionConnection* Junction::GetLastJunctionConnection();
+    JunctionConnection* GetLastJunctionConnection();
 
 	/**
 	 * Return the pointer to the last added junction connection (which might not be the one from the end of the vector)
 	 * @return A pointer to JunctionConnection object
 	 */
-	JunctionConnection* Junction::GetLastAddedJunctionConnection();
+    JunctionConnection* GetLastAddedJunctionConnection();
 	
 	/**
 	 * Return the vector that stores junction priority records
@@ -160,14 +160,14 @@ public:
 	 * Return the pointer to the last junction priority record
 	 * @return A pointer to JunctionPriorityRoad object
 	 */
-	JunctionPriorityRoad* Junction::GetLastJunctionPriority();
+    JunctionPriorityRoad* GetLastJunctionPriority();
 
 	
 	/**
 	 * Return the pointer to the last added junction priority record (which might not be the one from the end of the vector)
 	 * @return A pointer to JunctionPriorityRoad object
 	 */
-	JunctionPriorityRoad* Junction::GetLastAddedJunctionPriority();
+    JunctionPriorityRoad* GetLastAddedJunctionPriority();
 
 	/**
 	 * Return the vector that stores junction controller records
@@ -192,13 +192,13 @@ public:
 	 * Return the pointer to the last junction controller record
 	 * @return A pointer to JunctionController object
 	 */
-	JunctionController* Junction::GetLastJunctionController();
+    JunctionController* GetLastJunctionController();
 
 	/**
 	 * Return the pointer to the last added junction controller record (which might not be the one from the end of the vector)
 	 * @return A pointer to JunctionController object
 	 */
-	JunctionController* Junction::GetLastAddedJunctionController();
+    JunctionController* GetLastAddedJunctionController();
 
 };
 

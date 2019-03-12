@@ -8,7 +8,7 @@
 #include "../../OpenDrive/OpenDrive.h"
 #include "../../OpenDrive/RoadGeometry.h"
 #include "../Tree/RoadTree.h"
-#include "../../Osg/OsgMain.h"
+#include "../../Osg/OSGMain.h"
 
 /**
  * Class that holds all the buttons used to create road related records

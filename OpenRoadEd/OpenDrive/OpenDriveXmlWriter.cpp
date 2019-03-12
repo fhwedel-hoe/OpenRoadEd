@@ -1,7 +1,7 @@
 #include "OpenDriveXmlWriter.h"
 #include <iostream>
 #include <algorithm>
-#include "windows.h"
+//#include "windows.h"
 
 using std::cout;
 using std::endl;

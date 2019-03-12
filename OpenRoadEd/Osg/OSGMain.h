@@ -9,18 +9,18 @@
 #include <osgViewer/Viewer>
 #include <osgViewer/GraphicsWindow>
 #include <osgViewer/ViewerEventHandlers>
-#include <osgViewer/api/Win32/GraphicsWindowWin32>
+//#include <osgViewer/api/Win32/GraphicsWindowWin32>
 
 #include <osgGA/TrackballManipulator>
 #include <osgGA/FlightManipulator>
 #include <osgGA/DriveManipulator>
-#include <osgGA/KeySwitchMatrixManipulator>
+//#include <osgGA/KeySwitchMatrixManipulator>
 #include <osgGA/StateSetManipulator>
 #include <osgGA/AnimationPathManipulator>
 #include <osgGA/TerrainManipulator>
 
 
-typedef osgViewer::GraphicsWindowWin32::WindowData WindowData;
+//typedef osgViewer::GraphicsWindowWin32::WindowData WindowData;
 
 
 #include "../OpenDrive/OpenDrive.h"
@@ -91,7 +91,7 @@ private:
 	/**
 	*
 	*/
-	void createContext(int x, int y, int widht, int height, HWND window);
+    void createContext(int x, int y, int widht, int height/*, HWND window*/);
 
 public:
 	//--------------
@@ -109,7 +109,7 @@ public:
 	* @param width,height Dimensions of the viewer
 	* @param window Window handler
 	*/
-	void initViewer(int x, int y, int width, int height, HWND window);
+    void initViewer(int x, int y, int width, int height/*, HWND window*/);
 
 	/**
 	* Load a mode
@@ -238,7 +238,7 @@ public:
 	* Pick a 3D object from the viewport
 	* @param x, y coordinates of the cursor at which to pick the objects 
 	*/
-	OSGObjectNode* OSGMain::PickNode(float x, float y);
+    OSGObjectNode* PickNode(float x, float y);
 
 	/**
 	* Depending on the node type and the hierarchycal index array, find it in the structure

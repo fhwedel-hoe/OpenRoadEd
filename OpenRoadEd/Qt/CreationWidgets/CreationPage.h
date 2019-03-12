@@ -7,7 +7,7 @@
 
 #include "../../OpenDrive/OpenDrive.h"
 #include "../Tree/RoadTree.h"
-#include "../../Osg/OsgMain.h"
+#include "../../Osg/OSGMain.h"
 
 #include "CreationAllRoad.h"
 #include "CreationAllJunction.h"

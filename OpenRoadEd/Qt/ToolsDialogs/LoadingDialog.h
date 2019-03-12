@@ -6,7 +6,6 @@
 #include <QtCore/QSettings>
 #include "../../Osg/OSGMain.h"
 
-
 /**
  * "Loading" dialog
  *

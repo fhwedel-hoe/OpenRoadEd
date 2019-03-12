@@ -1,6 +1,6 @@
 #ifndef OTHERSTRUCTURES_H
 #define OTHERSTRUCTURES_H
-#include <String>
+#include <string>
 using std::string;
 
 /**

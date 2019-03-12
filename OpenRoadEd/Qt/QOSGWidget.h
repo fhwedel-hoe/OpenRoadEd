@@ -9,7 +9,6 @@ using Qt::WindowFlags;
 #include "Tree/RoadTree.h"
 #include "../Osg/OSGMain.h"
 
-
 /**
  * OSG widget class used as a 3D viewport
  *

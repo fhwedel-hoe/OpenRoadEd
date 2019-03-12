@@ -3,8 +3,8 @@
 
 #include "Road.h"
 #include "OtherStructures.h"
-#include <Vector>
-#include <String>
+#include <vector>
+#include <string>
 
 
 //Prototypes

@@ -1,8 +1,8 @@
 #ifndef OPENDRIVEXMLPARSER_H
 #define OPENDRIVEXMLPARSER_H
 
-#include <Vector>
-#include <String>
+#include <vector>
+#include <string>
 
 #include <iostream>
 #include <fstream>

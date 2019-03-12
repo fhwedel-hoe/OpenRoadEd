@@ -1,8 +1,8 @@
 #ifndef OPENDRIVEXMLWRITER_H
 #define OPENDRIVEXMLWRITER_H
 
-#include <Vector>
-#include <String>
+#include <vector>
+#include <string>
 
 #include <iostream>
 #include <iomanip>

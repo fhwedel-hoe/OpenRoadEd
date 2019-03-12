@@ -4,7 +4,7 @@
 #include "OSGConstants.h"
 #include "OSGRoad.h"
 #include <sstream>		//debug (convert double to string)
-#include "windows.h"	//debug (OutputDebugString)
+//#include "windows.h"	//debug (OutputDebugString)
 
 #include <osg/Geometry>
 #include <osgUtil/DelaunayTriangulator>

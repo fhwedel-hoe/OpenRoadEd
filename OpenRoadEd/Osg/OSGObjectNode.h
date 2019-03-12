@@ -4,7 +4,7 @@
 #include <osg/Node>
 #include <osg/Geode>
 #include <osg/Billboard>
-#include <Vector>
+#include <vector>
 
 /**
 * Enumeration type that contains all the OpenDRIVE available records

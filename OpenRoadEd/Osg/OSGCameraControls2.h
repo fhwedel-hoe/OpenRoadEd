@@ -3,7 +3,7 @@
 
 
 #include <osg/Matrixd>
-#include <osgGA/MatrixManipulator>
+#include <osgGA/CameraManipulator>
 
 /**
  * Free look camera that moves along the ground plane and along the vertical axis.
@@ -12,7 +12,7 @@
  * Movement along the ground plane: Space + Right mouse button
  * Movement along the vertical axis: Space + Middle mouse button
  */
-class OSGCameraControls2 : public osgGA::MatrixManipulator
+class OSGCameraControls2 : public osgGA::CameraManipulator
 {
 public:
 	/**
