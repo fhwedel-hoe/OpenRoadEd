@@ -52,8 +52,8 @@ osg::ref_ptr<osg::PositionAttitudeTransform> OSGJunction::DrawJunction (vector<R
 	for (unsigned int i=0; i<roads->size(); i++)
 	{
 		road = &roads->at(i);
-		//if the road is a connecting road of the junction
-		if (road->GetRoadJunction().compare(junctionId)==0)
+		//if the road is a connecting road of the junction && has something to draw
+		if (road->GetRoadJunction().compare(junctionId) == 0 && roadsGroup->getChild(i)->asGeode()->getNumDrawables() > 0)
 		{
 			//make a deep copy of the geode
 			osg::ref_ptr<osg::Geometry> tempGeom=new osg::Geometry(*(roadsGroup->getChild(i)->asGeode()->getDrawable(0)->asGeometry()),osg::CopyOp::DEEP_COPY_ALL);
