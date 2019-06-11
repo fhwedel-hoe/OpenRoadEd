@@ -38,6 +38,8 @@ public:
 	 */
 	void Init(RoadTree *roadTree);
 
+	void resizeEvent(QResizeEvent* event);
+
 	/**
 	 * Paint event, used to redraw the widget
 	 *

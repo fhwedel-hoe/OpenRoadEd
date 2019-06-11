@@ -18,4 +18,4 @@ Working directory needs to contain the "Resources" folder.
 
 ### Known Issues
 
-Display does not work. 
+Display does not work properly. 

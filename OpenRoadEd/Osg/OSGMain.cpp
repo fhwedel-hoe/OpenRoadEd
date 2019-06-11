@@ -12,6 +12,8 @@
 #include <osg/MatrixTransform>
 #include <osg/Notify>
 
+#include <osgQt/GraphicsWindowQt>
+
 #include "OSGMain.h"
 #include "OSGCameraControls.h"
 #include "OSGCameraControls2.h"
@@ -91,12 +93,14 @@ OSGMain::OSGMain(OpenDrive* openDrive)
 * @param width,height Dimensions of the viewer
 * @param window Window handler
 */
-void OSGMain::initViewer(int x, int y, int width, int height/*, HWND window*/)
+void OSGMain::initViewer(int x, int y, int width, int height, const QWidget * parent)
 {
 	mViewer = new osgViewer::Viewer;
 	mViewer->setKeyEventSetsDone(0);
 
-    createContext(x,y,width,height/*,window*/);
+	createContext(x,y,width,height,parent);
+
+	//std::cerr << "x: " << x << " y: " << y << " w: " << width << " h: " << height << std::endl;
 
 	//mViewer->setThreadingModel(osgViewer::Viewer::SingleThreaded);
 
@@ -155,6 +159,11 @@ void OSGMain::initViewer(int x, int y, int width, int height/*, HWND window*/)
 	mViewer->getCameraManipulator()->setNode(mRoadsGroup);
 }
 
+void OSGMain::setViewerRectangle(int x, int y, int width, int height)
+{
+    mGw->setWindowRectangle(x,y,width,height);
+}
+
 /**
 * Load a mode
 * @param filename A path to a file supported by OpenSceneGraph
@@ -181,7 +190,7 @@ void OSGMain::frame()
 /**
 * Creates the window context
 */
-void OSGMain::createContext(int x, int y, int width, int height/*, HWND window*/)
+void OSGMain::createContext(int x, int y, int width, int height, const QWidget * parent)
 {
 	// Sets the properties of the window and prepares it for renderin
 
@@ -206,7 +215,8 @@ void OSGMain::createContext(int x, int y, int width, int height/*, HWND window*/
 	traits->sampleBuffers = ds->getMultiSamples();
 	traits->samples = ds->getNumMultiSamples();
 
-    //traits->inheritedWindowData = new WindowData(window);
+	traits->supportsResize = true;
+	//traits->inheritedWindowData = new osgQt::GraphicsWindowQt::WindowData(parent); //new WindowData(window);
 
 	if (ds->getStereo())
 	{

@@ -91,7 +91,7 @@ private:
 	/**
 	*
 	*/
-    void createContext(int x, int y, int widht, int height/*, HWND window*/);
+    void createContext(int x, int y, int widht, int height, const QWidget * parent);
 
 public:
 	//--------------
@@ -107,9 +107,11 @@ public:
 	* Initialize the viewer
 	* @param x,y Position of the viewer
 	* @param width,height Dimensions of the viewer
-	* @param window Window handler
+    * @param parent Parent widget
 	*/
-    void initViewer(int x, int y, int width, int height/*, HWND window*/);
+    void initViewer(int x, int y, int width, int height, const QWidget * parent);
+
+    void setViewerRectangle(int x, int y, int width, int height);
 
 	/**
 	* Load a mode
