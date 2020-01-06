@@ -1,4 +1,8 @@
-add_compile_options(-std=c++14)
+cmake_minimum_required(VERSION 2.8) # this version is a guess
+
+if(COMMAND cmake_policy)
+  cmake_policy(SET CMP0003 NEW) # explicitly request new style for passing relative and absolute paths to linker
+endif(COMMAND cmake_policy)
 
 find_package(PkgConfig)
 pkg_check_modules(OSG REQUIRED openscenegraph)
@@ -124,9 +128,9 @@ set(TARGET_CPP "${CMAKE_SOURCE_DIR}/OpenDrive/OpenDriveXmlWriter.cpp"
     "${CMAKE_SOURCE_DIR}/Cephes/fresnl.cpp"
     "${CMAKE_SOURCE_DIR}/Cephes/polevl.c")
 
-message("File glob is ${TARGET_H} ${TARGET_CPP}")
-message("OSG libraries are ${OSG_LIBRARIES}")
+#message("File glob is ${TARGET_H} ${TARGET_CPP}")
+#message("OSG libraries are ${OSG_LIBRARIES}")
 
 add_executable(main main.cpp ${TARGET_H} ${TARGET_CPP})
-#set_property(TARGET main PROPERTY CXX_STANDARD 14)
+set_property(TARGET main PROPERTY CXX_STANDARD 14)
 target_link_libraries(main ${OSG_LIBRARIES} Qt4::QtGui Qt4::QtXml Qt4::QtCore Qt4::QtOpenGL)
