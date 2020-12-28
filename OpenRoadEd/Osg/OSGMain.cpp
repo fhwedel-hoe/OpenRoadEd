@@ -26,6 +26,15 @@ using std::ofstream;
 using std::endl;
 using std::cout;
 
+
+
+
+
+#include <osgViewer/api/X11/GraphicsWindowX11>
+
+
+
+
 /**
 * Main Geometry generation class
 * It uses OpenDrive structure to generate OpenSceneGraph geometry
@@ -216,8 +225,11 @@ void OSGMain::createContext(int x, int y, int width, int height, const QWidget *
 	traits->samples = ds->getNumMultiSamples();
 
 	traits->supportsResize = true;
+	//traits->inheritedWindowData = new WindowData(winId());
 	//traits->inheritedWindowData = new osgQt::GraphicsWindowQt::WindowData(parent); //new WindowData(window);
 
+        osgViewer::GraphicsWindowX11::WindowData* data = new osgViewer::GraphicsWindowX11::WindowData((Window)parent->winId());
+        traits->inheritedWindowData = data;
 	if (ds->getStereo())
 	{
 		switch(ds->getStereoMode())

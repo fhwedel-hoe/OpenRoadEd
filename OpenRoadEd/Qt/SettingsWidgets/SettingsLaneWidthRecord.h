@@ -2,7 +2,7 @@
 #define SETTINGSLANEWIDTHRECORD_H
 
 
-#include <QtGui/QWidget>
+#include <QtWidgets>
 #include <QtGui/QtGui>
 
 #include "../../OpenDrive/Lane.h"

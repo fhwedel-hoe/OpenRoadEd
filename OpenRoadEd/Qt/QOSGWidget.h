@@ -2,7 +2,7 @@
 #define QOSGWIDGET_H
 
 #include <QtCore/QTimer>
-#include <QtGui/QWidget>
+#include <QtWidgets>
 #include <QtGui/QMouseEvent>
 using Qt::WindowFlags;
 

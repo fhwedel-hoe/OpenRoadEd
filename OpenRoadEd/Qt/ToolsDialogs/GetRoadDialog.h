@@ -2,7 +2,9 @@
 #define GETROADDIALOG_H
 
 
-#include <QtGui/QDialog>
+#include <QWidget>
+#include <QDialog> 
+#include <QtWidgets>
 #include <QtCore/QSettings>
 #include "../../OpenDrive/OpenDrive.h"
 

@@ -2,12 +2,12 @@
 #define SCENERYDIALOG_H
 
 
-#include <QtGui/QDialog>
+#include <QDialog>
 #include <QtCore/QSettings>
-
+#include <QtWidgets>
 #include "../../Osg/OSGMain.h"
+#include "../../Qt/ToolsDialogs/LoadingDialog.h"
 
-#include "../ToolsDialogs/LoadingDialog.h"
 
 
 /**
