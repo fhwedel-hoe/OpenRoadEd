@@ -1,4 +1,4 @@
-#include <QtGui/QApplication>
+#include <QApplication>
 
 #include "Qt/MainWindow.h"
 #include "OpenDrive/OpenDrive.h"

@@ -2,7 +2,7 @@
 #define SETTINGSROAD_H
 
 
-#include <QtGui/QWidget>
+#include <QtWidgets>
 #include <QtGui/QtGui>
 
 #include "../../OpenDrive/OpenDrive.h"

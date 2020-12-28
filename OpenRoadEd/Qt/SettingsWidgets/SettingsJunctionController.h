@@ -2,7 +2,7 @@
 #define SETTINGSJUNCTIONCONTROLLER_H
 
 
-#include <QtGui/QWidget>
+#include <QtWidgets>
 #include <QtGui/QtGui>
 
 #include "../../OpenDrive/Junction.h"

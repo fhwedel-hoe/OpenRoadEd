@@ -2,7 +2,7 @@
 #define SCENERYDIALOG_H
 
 
-#include <QtGui/QDialog>
+#include <QDialog>
 #include <QtCore/QSettings>
 
 #include "../../Osg/OSGMain.h"

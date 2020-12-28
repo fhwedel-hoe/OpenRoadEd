@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.8) # this version is a guess
-
+#project(hello-world)
+ 
 if(COMMAND cmake_policy)
   cmake_policy(SET CMP0003 NEW) # explicitly request new style for passing relative and absolute paths to linker
 endif(COMMAND cmake_policy)
@@ -9,7 +10,49 @@ pkg_check_modules(OSG REQUIRED openscenegraph)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-find_package(Qt4 REQUIRED QtGui QtXml QtCore QtOpenGL)
+set(Qt5Gui_DIR "/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui")
+
+# find_package(Qt5 REQUIRED QtGui QtXml QtCore QtOpenGL)
+find_package(Qt5Widgets)
+
+
+# Find the QtWidgets library
+FIND_PACKAGE(Qt5Widgets)
+IF(NOT(Qt5Widgets_FOUND))
+  MESSAGE(FATAL_ERROR "Qt5Widgets library not found but required.")
+ELSE(Qt5Widgets_FOUND)
+  MESSAGE(STATUS "Qt5Widgets library found.")
+ENDIF(NOT(Qt5Widgets_FOUND))
+
+# Find the Qt5OpenGL library
+FIND_PACKAGE(Qt5OpenGL)
+IF(NOT(Qt5OpenGL_FOUND))
+  MESSAGE(FATAL_ERROR "Qt5OpenGL library not found but required.")
+ELSE(Qt5OpenGL_FOUND)
+  MESSAGE(STATUS "Qt5OpenGL library found.")
+ENDIF(NOT(Qt5OpenGL_FOUND))
+
+# Find the QtGui library
+FIND_PACKAGE(Qt5Gui)
+IF(NOT(Qt5Gui_FOUND))
+  MESSAGE(FATAL_ERROR "Qt5Gui library not found but required.")
+ELSE(Qt5Gui_FOUND)
+  MESSAGE(STATUS "Qt5Gui library found.")
+ENDIF(NOT(Qt5Gui_FOUND))
+
+# Find the Qt5Core library
+FIND_PACKAGE(Qt5Core)
+IF(NOT(Qt5Core_FOUND))
+  MESSAGE(FATAL_ERROR "Qt5Core library not found but required.")
+ELSE(Qt5Core_FOUND)
+  MESSAGE(STATUS "Qt5Core library found.")
+ENDIF(NOT(Qt5Core_FOUND))
+
+# Find OpenSceneGraph
+FIND_PACKAGE(OpenSceneGraph REQUIRED osgDB osgViewer osgUtil osgGA osgQt)
+IF(NOT(OPENSCENEGRAPH_FOUND))
+  MESSAGE(FATAL_ERROR "OpenSceneGraph not found but required.")
+ENDIF()
 
 set(TARGET_H "${CMAKE_SOURCE_DIR}/OpenDrive/OpenDriveXmlParser.h"
     "${CMAKE_SOURCE_DIR}/OpenDrive/RoadGeometry.h"
@@ -128,9 +171,9 @@ set(TARGET_CPP "${CMAKE_SOURCE_DIR}/OpenDrive/OpenDriveXmlWriter.cpp"
     "${CMAKE_SOURCE_DIR}/Cephes/fresnl.cpp"
     "${CMAKE_SOURCE_DIR}/Cephes/polevl.c")
 
-#message("File glob is ${TARGET_H} ${TARGET_CPP}")
-#message("OSG libraries are ${OSG_LIBRARIES}")
+message("File glob is ${TARGET_H} ${TARGET_CPP}")
+message("OSG libraries are ${OSG_LIBRARIES}")
 
 add_executable(main main.cpp ${TARGET_H} ${TARGET_CPP})
 set_property(TARGET main PROPERTY CXX_STANDARD 14)
-target_link_libraries(main ${OSG_LIBRARIES} Qt4::QtGui Qt4::QtXml Qt4::QtCore Qt4::QtOpenGL)
+target_link_libraries(main ${OPENSCENEGRAPH_LIBRARIES}  ${OSG_LIBRARIES} Qt5::Widgets Qt5::Gui Qt5::OpenGL Qt5::Core )

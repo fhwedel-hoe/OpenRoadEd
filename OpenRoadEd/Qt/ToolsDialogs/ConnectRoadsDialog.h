@@ -2,7 +2,7 @@
 #define CONNECTROADSDIALOG_H
 
 
-#include <QtGui/QDialog>
+#include <QDialog>
 #include <QtCore/QSettings>
 #include "../../OpenDrive/OpenDrive.h"
 #include "../Tree/RoadTree.h"
