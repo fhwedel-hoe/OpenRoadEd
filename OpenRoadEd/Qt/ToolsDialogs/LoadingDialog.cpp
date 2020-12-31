@@ -2,8 +2,8 @@
 #include <QtGui/QtGui>
 #include "LoadingDialog.h"
 #include "moc_LoadingDialog.cpp"
-
-#include <QtGui/QApplication>
+#include <QtWidgets>
+#include <QApplication>
 
 /**
  * Constructor

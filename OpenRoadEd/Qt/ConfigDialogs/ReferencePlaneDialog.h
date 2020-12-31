@@ -4,7 +4,7 @@
 
 #include <QDialog>
 #include <QtCore/QSettings>
-
+#include <QtWidgets>
 #include "../../Osg/OSGMain.h"
 
 /**

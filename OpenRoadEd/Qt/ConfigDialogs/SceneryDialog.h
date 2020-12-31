@@ -4,10 +4,10 @@
 
 #include <QDialog>
 #include <QtCore/QSettings>
-
+#include <QtWidgets>
 #include "../../Osg/OSGMain.h"
+#include "../../Qt/ToolsDialogs/LoadingDialog.h"
 
-#include "../ToolsDialogs/LoadingDialog.h"
 
 
 /**

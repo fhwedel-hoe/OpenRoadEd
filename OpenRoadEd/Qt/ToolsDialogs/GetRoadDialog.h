@@ -4,6 +4,7 @@
 
 #include <QWidget>
 #include <QDialog> 
+#include <QtWidgets>
 #include <QtCore/QSettings>
 #include "../../OpenDrive/OpenDrive.h"
 

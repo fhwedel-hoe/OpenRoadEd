@@ -49,7 +49,7 @@ ELSE(Qt5Core_FOUND)
 ENDIF(NOT(Qt5Core_FOUND))
 
 # Find OpenSceneGraph
-FIND_PACKAGE(OpenSceneGraph REQUIRED osgDB osgViewer osgUtil osgGA osgQt)
+FIND_PACKAGE(OpenSceneGraph REQUIRED osgDB osgViewer osgUtil osgGA)
 IF(NOT(OPENSCENEGRAPH_FOUND))
   MESSAGE(FATAL_ERROR "OpenSceneGraph not found but required.")
 ENDIF()
