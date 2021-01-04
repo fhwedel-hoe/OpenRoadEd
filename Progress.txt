@@ -1,5 +1,0 @@
-git clone https://github.com/Gepetto/osgQt.git
-git checkout 6e4de
-cmake .
-make
-
