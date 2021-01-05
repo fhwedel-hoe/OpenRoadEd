@@ -4,12 +4,8 @@ OpenRoadEd is simple application designed to create both logical (OpenDRIVE stan
 
 ## Build Instructions (tested on Ubuntu 20.04)
 
-<<<<<<< HEAD
-OpenRoadEd was created as part of this master's thesis: http://hdl.handle.net/2077/23047 by Dmitri and Egor Kurteanu.  
-This fork was adapted to compile on Linux (Ubuntu 20.04) and Qt5.
-=======
 ### Install dependencies
->>>>>>> b61fd62de2025def1b9b456f3843bba318449aee
+
 
 ```
 sudo apt install git cmake g++ libopenscenegraph-dev qt5-default
