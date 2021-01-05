@@ -27,13 +27,7 @@ using std::endl;
 using std::cout;
 
 
-
-
-
 #include <osgViewer/api/X11/GraphicsWindowX11>
-
-
-
 
 /**
 * Main Geometry generation class
@@ -318,9 +312,9 @@ void OSGMain::DrawRoadChordLine()
 	ss<<"Road ChordLine generation completed in "<<osg::Timer::instance()->delta_s(startTick,endTick)<<std::endl;
 	str.append(ss.str());
 	//Output to the debug window
-    //OutputDebugString( "\n" ) ;
-    //OutputDebugString( str.c_str() ) ;
-    //OutputDebugString( "\n" ) ;
+	cout << "\n" ;
+	cout << str.c_str() ;
+	cout << "\n" ;
 }
 
 
@@ -392,9 +386,9 @@ void OSGMain::DrawRoads()
 	ss<<"Road generation completed in "<<osg::Timer::instance()->delta_s(startTick,endTick)<<std::endl;
 	str.append(ss.str());
 	//Output to the debug window
-    //OutputDebugString( "\n" ) ;
-    //OutputDebugString( str.c_str() ) ;
-    //OutputDebugString( "\n" ) ;
+	cout << "\n" ;
+	cout << str.c_str() ;
+	cout << "\n" ;
 }
 
 
@@ -486,9 +480,9 @@ void OSGMain::DrawJunctions()
 	ss<<"Junction generation completed in "<<osg::Timer::instance()->delta_s(startTick,endTick)<<std::endl;
 	str.append(ss.str());
 	//Output to the debug window
-    //OutputDebugString( "\n" ) ;
-    //OutputDebugString( str.c_str() ) ;
-    //OutputDebugString( "\n" ) ;
+	cout << "\n" ;
+	cout << str.c_str() ;
+	cout << "\n" ;
 }
 
 /**
@@ -548,9 +542,9 @@ void OSGMain::DrawScenery(std::string heightMapFile, std::string terrainFile, do
 	ss<<"HeightMap generation completed in "<<osg::Timer::instance()->delta_s(startTick,endTick)<<std::endl;
 	str.append(ss.str());
 	//Output to the debug window
-    //OutputDebugString( "\n" ) ;
-    //OutputDebugString( str.c_str() ) ;
-    //OutputDebugString( "\n" ) ;
+	cout << "\n" ;
+	cout << str.c_str() ;
+	cout << "\n" ;
 
 	/////////////////////////////////////////////////////////////////////////////////////
 	//start Timer for statistics
@@ -572,9 +566,9 @@ void OSGMain::DrawScenery(std::string heightMapFile, std::string terrainFile, do
 	ss2<<"Scenery generation completed in "<<osg::Timer::instance()->delta_s(startTick,endTick)<<std::endl;
 	str2.append(ss2.str());
 	//Output to the debug window
-    //OutputDebugString( "\n" ) ;
-    //OutputDebugString( str2.c_str() ) ;
-    //OutputDebugString( "\n" ) ;
+	cout << "\n" ;
+	cout << str2.c_str() ;
+	cout << "\n" ;
 }
 
 /**
@@ -939,9 +933,9 @@ OSGObjectNode* OSGMain::PickNode(float x, float y)
 					ss<<"Picked in "<<osg::Timer::instance()->delta_s(startTick,endTick)<<std::endl;
 					str.append(ss.str());
 					//Output to the debug window
-                    //OutputDebugString( "\n" ) ;
-                    //OutputDebugString( str.c_str() ) ;
-                    //OutputDebugString( "\n" ) ;
+                	                cout << "\n" ;
+                	                cout << str.c_str() ;
+                	                cout << "\n" ;
 
 				}
 				///////////////////////////////////////////////
