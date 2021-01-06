@@ -65,7 +65,7 @@ Execute OpenRoadEd binary from the same directory as "Resources" dicrectory by r
 
 ```
 cd OpenRoadEd/
-./OpenRoadEd/build/main
+./OpenRoadEd/build/OpenRoadEd
 ```
 
 Please read the [OpenDrive Road Editor Usage Guide](Help/OpenRoadEdHelp.pdf) document for software instruction.
