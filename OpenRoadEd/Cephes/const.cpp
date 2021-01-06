@@ -63,6 +63,8 @@ Copyright 1984, 1995 by Stephen L. Moshier
 #include <stdlib.h>
 #include <stdio.h>
 
+extern "C" { // this actually is a C source
+
 #ifdef UNK
 #if 1
 double MACHEP =  1.11022302462515654042E-16;   /* 2**-53 */
@@ -253,3 +255,5 @@ extern unsigned short INFINITY[];
 extern unsigned short NAN[];
 extern unsigned short NEGZERO[];
 #endif
+
+} // extern "C"

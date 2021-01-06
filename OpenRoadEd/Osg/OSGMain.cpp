@@ -26,15 +26,24 @@ using std::ofstream;
 using std::endl;
 using std::cout;
 
-
+// from interreality.org/bzroot/vos/s5.3/src/app/threedeeqt/QOSGWidget.cpp
+#if defined(WIN32) && !defined(__CYGWIN__)
+#include <osgViewer/api/Win32/GraphicsWindowWin32>
+typedef HWND WindowHandle;
+typedef osgViewer::GraphicsWindowWin32::WindowData WindowData;
+#elif defined(__APPLE__)
+#include <osgViewer/api/Carbon/GraphicsWindowCarbon>
+typedef WindowRef WindowHandle;
+typedef osgViewer::GraphicsWindowCarbon::WindowData WindowData;
+#else // all other unix
 #include <osgViewer/api/X11/GraphicsWindowX11>
+typedef Window WindowHandle;
+typedef osgViewer::GraphicsWindowX11::WindowData WindowData;
+#endif
 
 /**
 * Main Geometry generation class
 * It uses OpenDrive structure to generate OpenSceneGraph geometry
-*
-*
-*
 */
 
 /**
@@ -217,13 +226,8 @@ void OSGMain::createContext(int x, int y, int width, int height, const QWidget *
 	traits->sharedContext = 0;
 	traits->sampleBuffers = ds->getMultiSamples();
 	traits->samples = ds->getNumMultiSamples();
-
 	traits->supportsResize = true;
-	//traits->inheritedWindowData = new WindowData(winId());
-	//traits->inheritedWindowData = new osgQt::GraphicsWindowQt::WindowData(parent); //new WindowData(window);
-
-        osgViewer::GraphicsWindowX11::WindowData* data = new osgViewer::GraphicsWindowX11::WindowData((Window)parent->winId());
-        traits->inheritedWindowData = data;
+	traits->inheritedWindowData = new WindowData((WindowHandle)parent->winId());
 	if (ds->getStereo())
 	{
 		switch(ds->getStereoMode())
