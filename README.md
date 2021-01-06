@@ -68,10 +68,13 @@ cd OpenRoadEd/
 ./OpenRoadEd/build/main
 ```
 
+Please read the [OpenDrive Road Editor Usage Guide](Help/OpenRoadEdHelp.pdf) document for software instruction.
+
+
 ## Known issues
 
 - Loading and rendring open drive (.xodr) files. Until a patch is made available you can use [esmini](https://github.com/esmini/esmini) to view the resulting files.
-- Mouse navigation does not work
+- Mouse navigation does not work.
 
 ## Origin
 
