@@ -1,55 +1,77 @@
 # OpenRoadEd on Linux
 
-OpenRoadEd is simple application designed to create both logical (OpenDRIVE standard) and geometrical (OpenSceneGraph) descriptions of road networks created by Dmitri and Egor Kurteanu as a Windows application (see below). This fork was adapted to compile on modem linux operating systems by Hermann Höhne and Hamid Ebadi.
+OpenRoadEd is simple application designed to create both logical (OpenDRIVE standard) and geometrical (OpenSceneGraph) descriptions of road networks created by Dmitri and Egor Kurteanu. 
+
+This fork was adapted to compile on modern Linux operating systems by Hermann Höhne and Hamid Ebadi.
 
 ![OpenRoadEdLinux](Screenshots/OpenRoadEdLinux.png)
 
+## Build Instructions 
 
+### Ubuntu 20.04
 
-## Build Instructions (tested on Ubuntu 20.04)
-
-### Install dependencies
+#### Install dependencies
 
 ```
 sudo apt install git cmake g++ libopenscenegraph-dev qt5-default
 ```
 
-### Build osgQt
+#### Build osgQt
+
+This can be skipped if osgQt in your system is reasonably recent.
 
 ```
 cd ~
 git clone https://github.com/Gepetto/osgQt.git
 cd osgQt/
 git checkout 6e4de
-mkdir build ; cd build ; cmake .. ; make
+mkdir build
+cd build
+cmake ..
+make
 sudo make install
 ```
 
-### Build OpenRoadEd
+#### Build OpenRoadEd
 
 ```
-cd ~
 git clone https://github.com/ebadi/OpenRoadEd.git
-cd OpenRoadEd/OpenRoadEd
-mkdir build ; cd build ; cmake .. ; make
-cp OpenRoadEd/OpenRoadEd/build/main ~/OpenRoadEd/OpenRoadEditor
+mkdir OpenRoadEd/OpenRoadEd/build
+cd OpenRoadEd/OpenRoadEd/build
+cmake ..
+make
 ```
 
-### Run OpenRoadEd
+### Windows 10
+
+#### Install dependencies
+
+Download and build dependencies (this may take hours).
+
+    …\vcpkg\vcpkg.exe install osg:x64-windows osgQt:x64-windows qt5:x64-windows
+    
+Static builds will not work.
+
+#### Build OpenRoadEd
+
+    cd OpenRoadEd\OpenRoadEd\build
+    …\VisualStudio\2019\Community\VC\Auxiliary\Build\vcvars64.bat
+    cmake .. -GNinja -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE=…\vcpkg\scripts\buildsystems\vcpkg.cmake
+    cmake --build .
+
+## Run OpenRoadEd
 
 Execute OpenRoadEd binary from the same directory as "Resources" dicrectory by running the following commands
 
 ```
-cd ~/OpenRoadEd/
-./OpenRoadEditor
+cd OpenRoadEd/
+./OpenRoadEd/build/OpenRoadEd
 ```
 
-#### Known issues
+## Known issues
 
 - Loading and rendring open drive (.xodr) files. Until a patch is made available you can use [esmini](https://github.com/esmini/esmini) to view the resulting files.
 
-### Windows application
+## Origin
+
 OpenRoadEd was created as part of this [master's thesis by Dmitri and Egor Kurteanu](http://hdl.handle.net/2077/23047) that is accessible from [sourceforge](https://sourceforge.net/projects/openroaded/) and [gitlab](https://gitlab.com/OpenRoadEd/OpenRoadEd).
-
-
-
