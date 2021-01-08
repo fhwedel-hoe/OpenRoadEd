@@ -105,12 +105,12 @@ OSGMain::OSGMain(OpenDrive* openDrive)
 * @param width,height Dimensions of the viewer
 * @param window Window handler
 */
-void OSGMain::initViewer(int x, int y, int width, int height, const QWidget * parent)
+void OSGMain::initViewer(int x, int y, int width, int height, WId window)
 {
 	mViewer = new osgViewer::Viewer;
 	mViewer->setKeyEventSetsDone(0);
 
-	createContext(x,y,width,height,parent);
+	createContext(x,y,width,height,window);
 
 	//std::cerr << "x: " << x << " y: " << y << " w: " << width << " h: " << height << std::endl;
 
@@ -202,7 +202,7 @@ void OSGMain::frame()
 /**
 * Creates the window context
 */
-void OSGMain::createContext(int x, int y, int width, int height, const QWidget * parent)
+void OSGMain::createContext(int x, int y, int width, int height, WId window)
 {
 	// Sets the properties of the window and prepares it for renderin
 
@@ -227,7 +227,7 @@ void OSGMain::createContext(int x, int y, int width, int height, const QWidget *
 	traits->sampleBuffers = ds->getMultiSamples();
 	traits->samples = ds->getNumMultiSamples();
 	traits->supportsResize = true;
-	traits->inheritedWindowData = new WindowData((WindowHandle)parent->winId());
+	traits->inheritedWindowData = new WindowData(window);
 	if (ds->getStereo())
 	{
 		switch(ds->getStereoMode())

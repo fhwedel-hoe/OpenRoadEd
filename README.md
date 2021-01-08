@@ -65,15 +65,15 @@ Execute OpenRoadEd binary from the same directory as "Resources" dicrectory by r
 
 ```
 cd OpenRoadEd/
-./OpenRoadEd/build/OpenRoadEd
+LC_ALL=C ./OpenRoadEd/build/OpenRoadEd
 ```
 
 Please read the [OpenDrive Road Editor Usage Guide](Help/OpenRoadEdHelp.pdf) document for software instruction.
 
+TODO: New screenshot
 
 ## Known issues
 
-- Loading and rendring open drive (.xodr) files. Until a patch is made available you can use [esmini](https://github.com/esmini/esmini) to view the resulting files.
 - Mouse navigation does not work.
 
 ## Origin

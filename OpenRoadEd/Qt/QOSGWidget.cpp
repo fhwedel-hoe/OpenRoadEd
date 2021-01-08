@@ -29,7 +29,7 @@ void QOSGWidget::Init(RoadTree *roadTree)
 	mRoadTree=roadTree;
 
 	// Updates the size of the 3D viewport
-    mOsgMain->initViewer(x(),y(),width(),height(),this);
+	mOsgMain->initViewer(x(),y(),width(),height(),winId());
 
 	setAttribute(Qt::WA_PaintOnScreen);
 	setAttribute(Qt::WA_NoSystemBackground);
