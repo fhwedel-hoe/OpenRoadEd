@@ -35,7 +35,7 @@ sudo make install
 #### Build OpenRoadEd
 
 ```
-git clone https://github.com/ebadi/OpenRoadEd.git
+git clone https://github.com/fhwedel-hoe/OpenRoadEd.git
 mkdir OpenRoadEd/OpenRoadEd/build
 cd OpenRoadEd/OpenRoadEd/build
 cmake ..
@@ -68,9 +68,13 @@ cd OpenRoadEd/
 ./OpenRoadEd/build/OpenRoadEd
 ```
 
+Please read the [OpenDrive Road Editor Usage Guide](Help/OpenRoadEdHelp.pdf) document for software instruction.
+
+
 ## Known issues
 
 - Loading and rendring open drive (.xodr) files. Until a patch is made available you can use [esmini](https://github.com/esmini/esmini) to view the resulting files.
+- Mouse navigation does not work.
 
 ## Origin
 
