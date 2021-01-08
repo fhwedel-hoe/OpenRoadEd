@@ -4,7 +4,7 @@ OpenRoadEd is simple application designed to create both logical (OpenDRIVE stan
 
 This fork was adapted to compile on modern Linux operating systems by Hermann Höhne and Hamid Ebadi.
 
-![OpenRoadEdLinux](Screenshots/OpenRoadEdLinux.png)
+![OpenRoadEdLinux](Screenshots/OpenRoadEdLinuxXodr.png)
 
 ## Build Instructions 
 
@@ -35,7 +35,8 @@ sudo make install
 #### Build OpenRoadEd
 
 ```
-git clone https://github.com/ebadi/OpenRoadEd.git
+cd ~
+git clone https://github.com/fhwedel-hoe/OpenRoadEd.git
 mkdir OpenRoadEd/OpenRoadEd/build
 cd OpenRoadEd/OpenRoadEd/build
 cmake ..
@@ -49,7 +50,7 @@ make
 Download and build dependencies (this may take hours).
 
     …\vcpkg\vcpkg.exe install osg:x64-windows osgQt:x64-windows qt5:x64-windows
-    
+
 Static builds will not work.
 
 #### Build OpenRoadEd
@@ -61,16 +62,17 @@ Static builds will not work.
 
 ## Run OpenRoadEd
 
-Execute OpenRoadEd binary from the same directory as "Resources" dicrectory by running the following commands
+Execute OpenRoadEd binary from the same directory as "Resources" dicrectory by running the following commands:
 
 ```
-cd OpenRoadEd/
-./OpenRoadEd/build/OpenRoadEd
+cd ~/OpenRoadEd/
+LC_ALL=C ./OpenRoadEd/build/OpenRoadEd
 ```
 
-## Known issues
+Forcing the locale is a necessary workaround for issue #8.
 
-- Loading and rendring open drive (.xodr) files. Until a patch is made available you can use [esmini](https://github.com/esmini/esmini) to view the resulting files.
+Please read the [OpenDrive Road Editor Usage Guide](Help/OpenRoadEdHelp.pdf) document for software instruction.
+
 
 ## Origin
 
