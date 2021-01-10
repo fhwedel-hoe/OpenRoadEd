@@ -4,7 +4,7 @@ OpenRoadEd is simple application designed to create both logical (OpenDRIVE stan
 
 This fork was adapted to compile on modern Linux operating systems by Hermann Höhne and Hamid Ebadi.
 
-![OpenRoadEdLinux](Screenshots/OpenRoadEdLinux.png)
+![OpenRoadEdLinux](Screenshots/OopenRoadEdLinuxXodrHandling.png)
 
 ## Build Instructions 
 
@@ -70,7 +70,7 @@ LC_ALL=C ./OpenRoadEd/build/OpenRoadEd
 
 Please read the [OpenDrive Road Editor Usage Guide](Help/OpenRoadEdHelp.pdf) document for software instruction.
 
-TODO: New screenshot
+
 
 ## Known issues
 
