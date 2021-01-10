@@ -4,7 +4,7 @@ OpenRoadEd is simple application designed to create both logical (OpenDRIVE stan
 
 This fork was adapted to compile on modern Linux operating systems by Hermann Höhne and Hamid Ebadi.
 
-![OpenRoadEdLinux](Screenshots/OopenRoadEdLinuxXodrHandling.png)
+![OpenRoadEdLinux](Screenshots/OpenRoadEdLinuxXodr.png)
 
 ## Build Instructions 
 
@@ -35,6 +35,7 @@ sudo make install
 #### Build OpenRoadEd
 
 ```
+cd ~
 git clone https://github.com/fhwedel-hoe/OpenRoadEd.git
 mkdir OpenRoadEd/OpenRoadEd/build
 cd OpenRoadEd/OpenRoadEd/build
@@ -49,7 +50,7 @@ make
 Download and build dependencies (this may take hours).
 
     …\vcpkg\vcpkg.exe install osg:x64-windows osgQt:x64-windows qt5:x64-windows
-    
+
 Static builds will not work.
 
 #### Build OpenRoadEd
@@ -64,7 +65,7 @@ Static builds will not work.
 Execute OpenRoadEd binary from the same directory as "Resources" dicrectory by running the following commands
 
 ```
-cd OpenRoadEd/
+cd ~/OpenRoadEd/
 LC_ALL=C ./OpenRoadEd/build/OpenRoadEd
 ```
 
@@ -74,7 +75,7 @@ Please read the [OpenDrive Road Editor Usage Guide](Help/OpenRoadEdHelp.pdf) doc
 
 ## Known issues
 
-- Mouse navigation does not work.
+- Mouse navigation in 3D view is not working.
 
 ## Origin
 
