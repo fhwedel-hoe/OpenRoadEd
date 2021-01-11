@@ -72,11 +72,6 @@ LC_ALL=C ./OpenRoadEd/build/OpenRoadEd
 Please read the [OpenDrive Road Editor Usage Guide](Help/OpenRoadEdHelp.pdf) document for software instruction.
 
 
-
-## Known issues
-
-- Mouse navigation in 3D view is not working.
-
 ## Origin
 
 OpenRoadEd was created as part of this [master's thesis by Dmitri and Egor Kurteanu](http://hdl.handle.net/2077/23047) that is accessible from [sourceforge](https://sourceforge.net/projects/openroaded/) and [gitlab](https://gitlab.com/OpenRoadEd/OpenRoadEd).
