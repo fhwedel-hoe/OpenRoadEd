@@ -18,11 +18,11 @@ sudo apt install git cmake g++ libopenscenegraph-dev qt5-default
 
 #### Build osgQt
 
-This can be skipped if osgQt in your system is reasonably recent.
+This can be skipped if libopenscenegraph-dev installed osgQt/GraphicsWindowQt header file in /usr/local/include/osgQt/GraphicsWindowQt (Ubuntu 18.04)
 
 ```
 cd ~
-git clone https://github.com/Gepetto/osgQt.git
+git clone https://github.com/openscenegraph/osgQt.git
 cd osgQt/
 git checkout 6e4de
 mkdir build
