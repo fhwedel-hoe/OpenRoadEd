@@ -4,17 +4,19 @@ project(OpenRoadEd)
  
 if(COMMAND cmake_policy)
   cmake_policy(SET CMP0003 NEW) # explicitly request new style for passing relative and absolute paths to linker
+  cmake_policy(SET CMP0106 NEW) # Disable VTK specific cmake feature "Documentation"
 endif(COMMAND cmake_policy)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-# find_package(Qt5 REQUIRED QtGui QtXml QtCore QtOpenGL)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5OpenGL REQUIRED)
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Core REQUIRED)
 find_package(OpenSceneGraph REQUIRED osgDB osgViewer osgUtil osgGA)
+
+add_subdirectory(osgQt)
 
 set(TARGET_H "${CMAKE_SOURCE_DIR}/OpenDrive/OpenDriveXmlParser.h"
     "${CMAKE_SOURCE_DIR}/OpenDrive/RoadGeometry.h"
@@ -137,3 +139,8 @@ add_executable(OpenRoadEd main.cpp ${TARGET_H} ${TARGET_CPP})
 set_property(TARGET OpenRoadEd PROPERTY CXX_STANDARD 14)
 target_compile_definitions(OpenRoadEd PRIVATE NOGDI)
 target_link_libraries(OpenRoadEd ${OPENSCENEGRAPH_LIBRARIES} Qt5::Widgets Qt5::Gui Qt5::OpenGL Qt5::Core )
+
+target_include_directories(OpenRoadEd PRIVATE 
+osgQt/include
+${CMAKE_BINARY_DIR}/osgQt/src/
+)

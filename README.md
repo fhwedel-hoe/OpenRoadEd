@@ -16,21 +16,13 @@ This fork was adapted to compile on modern Linux operating systems by Hermann HÃ
 sudo apt install git cmake g++ libopenscenegraph-dev qt5-default
 ```
 
-#### Build osgQt
-
-This can be skipped if libopenscenegraph-dev installed osgQt/GraphicsWindowQt header file in /usr/local/include/osgQt/GraphicsWindowQt (Ubuntu 18.04)
+#### Fetch osgQt
 
 ```
-cd ~
-git clone https://github.com/openscenegraph/osgQt.git
-cd osgQt/
-git checkout 6e4de
-mkdir build
-cd build
-cmake ..
-make
-sudo make install
+git submodule --init update
 ```
+
+On some systems, this can be skipped, as osgQt is part of openscenegraph (e.g. Ubuntu 18.04).
 
 #### Build OpenRoadEd
 
@@ -44,6 +36,8 @@ make
 ```
 
 ### Windows 10
+
+*Not tested with osgQt as a submodule.*
 
 #### Install dependencies
 

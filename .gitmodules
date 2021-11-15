@@ -1,0 +1,3 @@
+[submodule "OpenRoadEd/osgQt"]
+	path = OpenRoadEd/osgQt
+	url = https://github.com/openscenegraph/osgQt

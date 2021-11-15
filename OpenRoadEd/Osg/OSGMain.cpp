@@ -12,7 +12,7 @@
 #include <osg/MatrixTransform>
 #include <osg/Notify>
 
-#include <osgQt/GraphicsWindowQt>
+#include <osgQOpenGL/osgQOpenGLWidget>
 
 #include "OSGMain.h"
 #include "OSGCameraControls.h"
