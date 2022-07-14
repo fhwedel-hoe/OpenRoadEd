@@ -2,10 +2,8 @@ cmake_minimum_required(VERSION 3.1) # this version is a guess
 
 project(OpenRoadEd)
  
-if(COMMAND cmake_policy)
-  cmake_policy(SET CMP0003 NEW) # explicitly request new style for passing relative and absolute paths to linker
-  cmake_policy(SET CMP0106 NEW) # Disable VTK specific cmake feature "Documentation"
-endif(COMMAND cmake_policy)
+cmake_policy(SET CMP0003 NEW) # explicitly request new style for passing relative and absolute paths to linker
+#set(CMAKE_POLICY_DEFAULT_CMP0106 NEW) # Disable VTK specific cmake feature "Documentation" in osgQt
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -141,6 +139,7 @@ target_compile_definitions(OpenRoadEd PRIVATE NOGDI)
 target_link_libraries(OpenRoadEd ${OPENSCENEGRAPH_LIBRARIES} Qt5::Widgets Qt5::Gui Qt5::OpenGL Qt5::Core )
 
 target_include_directories(OpenRoadEd PRIVATE 
+${OPENSCENEGRAPH_INCLUDE_DIRS}
 osgQt/include
 ${CMAKE_BINARY_DIR}/osgQt/src/
 )

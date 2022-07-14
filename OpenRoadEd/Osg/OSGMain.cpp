@@ -227,7 +227,12 @@ void OSGMain::createContext(int x, int y, int width, int height, WId window)
 	traits->sampleBuffers = ds->getMultiSamples();
 	traits->samples = ds->getNumMultiSamples();
 	traits->supportsResize = true;
-	traits->inheritedWindowData = new WindowData(window);
+	traits->inheritedWindowData = new WindowData(
+	#ifdef WIN32
+	(HWND)
+	#endif
+	window
+	);
 	if (ds->getStereo())
 	{
 		switch(ds->getStereoMode())

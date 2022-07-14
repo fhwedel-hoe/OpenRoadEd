@@ -16,19 +16,10 @@ This fork was adapted to compile on modern Linux operating systems by Hermann H�
 sudo apt install git cmake g++ libopenscenegraph-dev qt5-default
 ```
 
-#### Fetch osgQt
-
-```
-git submodule --init update
-```
-
-On some systems, this can be skipped, as osgQt is part of openscenegraph (e.g. Ubuntu 18.04).
-
 #### Build OpenRoadEd
 
 ```
-cd ~
-git clone https://github.com/fhwedel-hoe/OpenRoadEd.git
+git clone --recurse-submodules https://github.com/fhwedel-hoe/OpenRoadEd.git
 mkdir OpenRoadEd/OpenRoadEd/build
 cd OpenRoadEd/OpenRoadEd/build
 cmake ..
@@ -37,18 +28,17 @@ make
 
 ### Windows 10
 
-*Not tested with osgQt as a submodule.*
-
 #### Install dependencies
 
 Download and build dependencies (this may take hours).
 
-    …\vcpkg\vcpkg.exe install osg:x64-windows osgQt:x64-windows qt5:x64-windows
+    …\vcpkg\vcpkg.exe install osg:x64-windows qt5:x64-windows
 
 Static builds will not work.
 
 #### Build OpenRoadEd
 
+    git clone --recurse-submodules https://github.com/fhwedel-hoe/OpenRoadEd.git
     cd OpenRoadEd\OpenRoadEd\build
     …\VisualStudio\2019\Community\VC\Auxiliary\Build\vcvars64.bat
     cmake .. -GNinja -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE=…\vcpkg\scripts\buildsystems\vcpkg.cmake
@@ -59,13 +49,13 @@ Static builds will not work.
 Execute OpenRoadEd binary from the same directory as "Resources" dicrectory by running the following commands:
 
 ```
-cd ~/OpenRoadEd/
+cd …/OpenRoadEd/
 LC_ALL=C ./OpenRoadEd/build/OpenRoadEd
 ```
 
 Forcing the locale is a necessary workaround for issue #8.
 
-Please read the [OpenDrive Road Editor Usage Guide](Help/OpenRoadEdHelp.pdf) document for software instruction.
+Please read the [OpenDrive Road Editor Usage Guide](Help/OpenRoadEdHelp.pdf) document for software usage instructions.
 
 
 ## Origin
