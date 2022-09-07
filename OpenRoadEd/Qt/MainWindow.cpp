@@ -495,7 +495,11 @@ void MainWindow::openXML()
 	QString fileName = QFileDialog::getOpenFileName(this,tr("Open File"), QDir::currentPath(), tr("OpenDRIVE (*.xodr *.xml)"));
 	if (fileName==nullptr)
 		return;
+	this->openXML(fileName.toStdString());
+}
 
+void MainWindow::openXML(const std::string fileName)
+{
 	// Cleares the road structure, road tree and OSG hierarchy
 	newDocument();
 
@@ -506,7 +510,7 @@ void MainWindow::openXML()
 
 	// Parses the file and fills in the OpenDrive structure
 	OpenDriveXmlParser parser(mOpenDrive);
-	parser.ReadFile(fileName.toStdString());
+	parser.ReadFile(fileName);
 
 	// Fills in the road tree
 	mRoadTree->LoadStructure(mOpenDrive);
