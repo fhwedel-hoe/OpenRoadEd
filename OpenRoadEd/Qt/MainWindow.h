@@ -19,10 +19,6 @@
 
 /**
  * Main window class used as a main application window
- *
- *
- *
- *
  */
 class MainWindow : public QMainWindow
 {
@@ -208,7 +204,14 @@ private slots:
 	 * The generated screenshot could be used for heightmap generation.
 	 */
 	void OnTakeScreenshot();
-	
+
+public:
+
+	/**
+	 * Parses the given file
+	 */
+	void openXML(const std::string fileName);
+
 };
 
 
