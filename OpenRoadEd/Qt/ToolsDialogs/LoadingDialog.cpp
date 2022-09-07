@@ -26,6 +26,6 @@ LoadingDialog::LoadingDialog()
 	setLayout(lDialogLayout);
 	//-------------------------------------------------
 
-	setWindowFlags(Qt::Popup);
+	setWindowFlags(Qt::WindowStaysOnTopHint);
 	setWindowTitle("Loading");
 }
