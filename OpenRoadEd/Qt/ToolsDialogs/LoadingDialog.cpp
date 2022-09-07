@@ -26,6 +26,6 @@ LoadingDialog::LoadingDialog()
 	setLayout(lDialogLayout);
 	//-------------------------------------------------
 
-	setWindowFlags(Qt::Popup);
+	//setWindowFlags(Qt::Popup); // with XFCE on Linux, this can lock the entire screen, making debugging hard
 	setWindowTitle("Loading");
 }
