@@ -1023,8 +1023,12 @@ bool  OSGRoad::AddRoadVertices (Road *road, OSGGeometryArrays &roadGeometry, OSG
 	}
 
 	//Add bound vertices to the mask
-	maskVertexArray->push_back(roadGeometry.mVertices->at(indices.at(indices.size()-3)));
-	maskVertexArray->push_back(roadGeometry.mVertices->at(indices.at(indices.size()-1)));
+	try {
+		maskVertexArray->push_back(roadGeometry.mVertices->at(indices.at(indices.size()-3)));
+		maskVertexArray->push_back(roadGeometry.mVertices->at(indices.at(indices.size()-1)));
+	} catch (const std::out_of_range &) {
+		// TODO
+	}
 
 	return true;
 }
