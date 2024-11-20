@@ -8,48 +8,57 @@ This fork was adapted to compile on modern Linux operating systems by Hermann H�
 
 ## Build Instructions 
 
-### Ubuntu 20.04
+### Ubuntu 24.04
 
 #### Install dependencies
 
 ```
-sudo apt install git cmake g++ libopenscenegraph-dev qt5-default
+sudo apt install git cmake g++ libopenscenegraph-dev qtbase5-dev
 ```
+
+#### Fetch osgQt
+
+```
+git submodule --init update
+```
+
+On some systems this can be skipped, as osgQt is part of openscenegraph (e.g. Ubuntu 18.04).
 
 #### Build OpenRoadEd
 
 ```
 git clone --recurse-submodules https://github.com/fhwedel-hoe/OpenRoadEd.git
-mkdir OpenRoadEd/OpenRoadEd/build
-cd OpenRoadEd/OpenRoadEd/build
-cmake ..
-make
+cd OpenRoadEd
+mkdir OpenRoadEd/build
+cmake -S OpenRoadEd -B OpenRoadEd/build
+cmake --build OpenRoadEd/build --parallel 8
 ```
 
-### Windows 10
+### Windows 11
 
 #### Install dependencies
 
 Download and build dependencies (this may take hours).
 
-    …\vcpkg\vcpkg.exe install osg:x64-windows qt5:x64-windows
+    …\vcpkg\vcpkg.exe install osg:x64-windows osgQt:x64-windows qt6:x64-windows
 
 Static builds will not work.
 
 #### Build OpenRoadEd
 
-    git clone --recurse-submodules https://github.com/fhwedel-hoe/OpenRoadEd.git
-    cd OpenRoadEd\OpenRoadEd\build
-    …\VisualStudio\2019\Community\VC\Auxiliary\Build\vcvars64.bat
-    cmake .. -GNinja -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE=…\vcpkg\scripts\buildsystems\vcpkg.cmake
-    cmake --build .
+```
+cd OpenRoadEd
+…\VisualStudio\2019\Community\VC\Auxiliary\Build\vcvars64.bat
+cmake -S OpenRoadEd -B OpenRoadEd/build -GNinja -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE=…\vcpkg\scripts\buildsystems\vcpkg.cmake
+cmake --build OpenRoadEd/build --parallel 8
+```
 
 ## Run OpenRoadEd
 
 Execute OpenRoadEd binary from the same directory as "Resources" dicrectory by running the following commands:
 
 ```
-cd …/OpenRoadEd/
+cd ~/OpenRoadEd/
 LC_ALL=C ./OpenRoadEd/build/OpenRoadEd
 ```
 
