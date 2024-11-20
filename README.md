@@ -13,7 +13,7 @@ This fork was adapted to compile on modern Linux operating systems by Hermann HÃ
 #### Install dependencies
 
 ```
-sudo apt install git cmake g++ libopenscenegraph-dev qtbase5-dev
+sudo apt install git cmake g++ libopenscenegraph-dev qt6-base-dev libxkbcommon-dev
 ```
 
 #### Fetch osgQt
@@ -30,7 +30,7 @@ On some systems this can be skipped, as osgQt is part of openscenegraph (e.g. Ub
 git clone --recurse-submodules https://github.com/fhwedel-hoe/OpenRoadEd.git
 cd OpenRoadEd
 mkdir OpenRoadEd/build
-cmake -S OpenRoadEd -B OpenRoadEd/build
+cmake -S OpenRoadEd -B OpenRoadEd/build -DBUILD_OSG_EXAMPLES:BOOL=OFF
 cmake --build OpenRoadEd/build --parallel 8
 ```
 

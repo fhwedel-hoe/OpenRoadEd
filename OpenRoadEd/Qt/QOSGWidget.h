@@ -29,7 +29,7 @@ public:
 	 * @param name Name of the widget
 	 * @param f Windows flags, NULL for default flags
 	 */
-	QOSGWidget(OSGMain *osgMain, QWidget *parent = 0, const char * name = 0, WindowFlags f = 0);
+	QOSGWidget(OSGMain *osgMain, QWidget *parent = 0, const char * name = 0, WindowFlags f = Qt::Widget);
 
 	/**
 	 * Initializes the OSG widget

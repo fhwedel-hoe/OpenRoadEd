@@ -493,7 +493,7 @@ void MainWindow::openXML()
 {
 	// Opens an "open file" dialog
 	QString fileName = QFileDialog::getOpenFileName(this,tr("Open File"), QDir::currentPath(), tr("OpenDRIVE (*.xodr *.xml)"));
-	if (fileName==NULL)
+	if (fileName==nullptr)
 		return;
 
 	// Cleares the road structure, road tree and OSG hierarchy
@@ -539,7 +539,7 @@ void MainWindow::saveXML()
 {
 	// Opens an "save file" dialog
 	QString fileName = QFileDialog::getSaveFileName(this,tr("Save File"), QDir::currentPath(), tr("OpenDRIVE (*.xodr *.xml)"));
-	if (fileName==NULL)
+	if (fileName==nullptr)
 		return;
 
 	// Saves the road data to the file
@@ -558,7 +558,7 @@ void MainWindow::saveOSG()
 {
 	// Opens an "save file" dialog
 	QString fileName = QFileDialog::getSaveFileName(this,tr("Save File"), QDir::currentPath(), tr("OpenDRIVE (*.osg)"));
-	if (fileName==NULL)
+	if (fileName==nullptr)
 		return;
 
 	// Saves the geometry data to the file

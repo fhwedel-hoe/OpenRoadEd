@@ -151,7 +151,7 @@ void SceneryDialog::BrowseForTexture()
 {
 	QString fileName = QFileDialog::getOpenFileName(this,tr("Open File"), QDir::currentPath(), tr("Images (*.jpg *.tga)"));
 
-	if (fileName!=NULL)
+	if (fileName!=nullptr)
 		mSceneryTexture->setText(fileName);
 }
 
@@ -162,7 +162,7 @@ void SceneryDialog::BrowseForHeightmap()
 {
 	QString fileName = QFileDialog::getOpenFileName(this,tr("Open File"), QDir::currentPath(), tr("Images (*.jpg *.tga)"));
 
-	if (fileName!=NULL)
+	if (fileName!=nullptr)
 		mSceneryHeightmap->setText(fileName);
 }
 

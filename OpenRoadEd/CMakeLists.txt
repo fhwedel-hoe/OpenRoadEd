@@ -1,17 +1,17 @@
-cmake_minimum_required(VERSION 3.1) # this version is a guess
+cmake_minimum_required(VERSION 3.18) # this is just the version I used
 
 project(OpenRoadEd)
- 
+
 cmake_policy(SET CMP0003 NEW) # explicitly request new style for passing relative and absolute paths to linker
-#set(CMAKE_POLICY_DEFAULT_CMP0106 NEW) # Disable VTK specific cmake feature "Documentation" in osgQt
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5OpenGL REQUIRED)
-find_package(Qt5Gui REQUIRED)
-find_package(Qt5Core REQUIRED)
+find_package(Qt6Core REQUIRED)
+find_package(Qt6Gui REQUIRED)
+find_package(Qt6Widgets REQUIRED)
+find_package(Qt6OpenGL REQUIRED)
+find_package(Qt6OpenGLWidgets REQUIRED)
 find_package(OpenSceneGraph REQUIRED osgDB osgViewer osgUtil osgGA)
 
 add_subdirectory(osgQt)
@@ -136,7 +136,7 @@ set(TARGET_CPP "${CMAKE_SOURCE_DIR}/OpenDrive/OpenDriveXmlWriter.cpp"
 add_executable(OpenRoadEd main.cpp ${TARGET_H} ${TARGET_CPP})
 set_property(TARGET OpenRoadEd PROPERTY CXX_STANDARD 14)
 target_compile_definitions(OpenRoadEd PRIVATE NOGDI)
-target_link_libraries(OpenRoadEd ${OPENSCENEGRAPH_LIBRARIES} Qt5::Widgets Qt5::Gui Qt5::OpenGL Qt5::Core )
+target_link_libraries(OpenRoadEd ${OPENSCENEGRAPH_LIBRARIES} Qt6::Widgets Qt6::OpenGL Qt6::OpenGLWidgets Qt6::Gui Qt6::Core)
 
 target_include_directories(OpenRoadEd PRIVATE 
 ${OPENSCENEGRAPH_INCLUDE_DIRS}
