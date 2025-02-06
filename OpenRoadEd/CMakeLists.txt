@@ -14,6 +14,7 @@ find_package(Qt6OpenGL REQUIRED)
 find_package(Qt6OpenGLWidgets REQUIRED)
 find_package(OpenSceneGraph REQUIRED osgDB osgViewer osgUtil osgGA)
 
+option(BUILD_OSG_EXAMPLES "Enable to build OSG Examples" OFF)
 add_subdirectory(osgQt)
 
 set(TARGET_H "${CMAKE_SOURCE_DIR}/OpenDrive/OpenDriveXmlParser.h"
