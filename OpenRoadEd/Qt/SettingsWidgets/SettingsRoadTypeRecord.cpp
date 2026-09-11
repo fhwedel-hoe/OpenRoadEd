@@ -70,7 +70,7 @@ void SettingsRoadTypeRecord::LoadData(RoadType *roadType, double minS, double ma
 	{
 		// Disconnects the "value changed" signals while the values are loaded
 		disconnect(mS, SIGNAL(valueChanged(double)), this, SLOT(SChanged(double)));
-		disconnect(mType, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(TypeChanged(const QString &)));
+		disconnect(mType, SIGNAL(currentTextChanged(const QString &)), this, SLOT(TypeChanged(const QString &)));
 
 		// Sets the record properties to the input widgets
 		mRoadType=roadType;
@@ -87,7 +87,7 @@ void SettingsRoadTypeRecord::LoadData(RoadType *roadType, double minS, double ma
 
 		// Connects the "value changed" signals back
 		connect(mS, SIGNAL(valueChanged(double)), this, SLOT(SChanged(double)));
-		connect(mType, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(TypeChanged(const QString &)));
+		connect(mType, SIGNAL(currentTextChanged(const QString &)), this, SLOT(TypeChanged(const QString &)));
 	}
 }
 

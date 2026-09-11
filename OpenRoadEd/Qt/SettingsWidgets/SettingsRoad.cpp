@@ -207,23 +207,23 @@ void SettingsRoad::LoadData(Road *road)
 
 		disconnect(mPredecessor, SIGNAL(clicked(bool)), this, SLOT(PredecessorChanged(bool)));
 		disconnect(mPredecessorId, SIGNAL(editingFinished()), this, SLOT(PredecessorIdChanged()));
-		disconnect(mPredecessorType, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(PredecessorTypeChanged(const QString &)));
-		disconnect(mPredecessorContactPoint, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(PredecessorContactPointChanged(const QString &)));
+		disconnect(mPredecessorType, SIGNAL(currentTextChanged(const QString &)), this, SLOT(PredecessorTypeChanged(const QString &)));
+		disconnect(mPredecessorContactPoint, SIGNAL(currentTextChanged(const QString &)), this, SLOT(PredecessorContactPointChanged(const QString &)));
 
 		disconnect(mSuccessor, SIGNAL(clicked(bool)), this, SLOT(SuccessorChanged(bool)));
 		disconnect(mSuccessorId, SIGNAL(editingFinished()), this, SLOT(SuccessorIdChanged()));
-		disconnect(mSuccessorType, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(SuccessorTypeChanged(const QString &)));
-		disconnect(mSuccessorContactPoint, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(SuccessorContactPointChanged(const QString &)));
+		disconnect(mSuccessorType, SIGNAL(currentTextChanged(const QString &)), this, SLOT(SuccessorTypeChanged(const QString &)));
+		disconnect(mSuccessorContactPoint, SIGNAL(currentTextChanged(const QString &)), this, SLOT(SuccessorContactPointChanged(const QString &)));
 
 		disconnect(mNeighbor1, SIGNAL(clicked(bool)), this, SLOT(Neighbor1Changed(bool)));
 		disconnect(mNeighbor1Id, SIGNAL(editingFinished()), this, SLOT(Neighbor1IdChanged()));
-		disconnect(mNeighbor1Side, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(Neighbor1SideChanged(const QString &)));
-		disconnect(mNeighbor1Direction, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(Neighbor1DirectionChanged(const QString &)));
+		disconnect(mNeighbor1Side, SIGNAL(currentTextChanged(const QString &)), this, SLOT(Neighbor1SideChanged(const QString &)));
+		disconnect(mNeighbor1Direction, SIGNAL(currentTextChanged(const QString &)), this, SLOT(Neighbor1DirectionChanged(const QString &)));
 
 		disconnect(mNeighbor2, SIGNAL(clicked(bool)), this, SLOT(Neighbor2Changed(bool)));
 		disconnect(mNeighbor2Id, SIGNAL(editingFinished()), this, SLOT(Neighbor2IdChanged()));
-		disconnect(mNeighbor2Side, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(Neighbor2SideChanged(const QString &)));
-		disconnect(mNeighbor2Direction, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(Neighbor2DirectionChanged(const QString &)));
+		disconnect(mNeighbor2Side, SIGNAL(currentTextChanged(const QString &)), this, SLOT(Neighbor2SideChanged(const QString &)));
+		disconnect(mNeighbor2Direction, SIGNAL(currentTextChanged(const QString &)), this, SLOT(Neighbor2DirectionChanged(const QString &)));
 
 
 		// Sets the record properties to the input widgets
@@ -290,23 +290,23 @@ void SettingsRoad::LoadData(Road *road)
 
 		connect(mPredecessor, SIGNAL(clicked(bool)), this, SLOT(PredecessorChanged(bool)));
 		connect(mPredecessorId, SIGNAL(editingFinished()), this, SLOT(PredecessorIdChanged()));
-		connect(mPredecessorType, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(PredecessorTypeChanged(const QString &)));
-		connect(mPredecessorContactPoint, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(PredecessorContactPointChanged(const QString &)));
+		connect(mPredecessorType, SIGNAL(currentTextChanged(const QString &)), this, SLOT(PredecessorTypeChanged(const QString &)));
+		connect(mPredecessorContactPoint, SIGNAL(currentTextChanged(const QString &)), this, SLOT(PredecessorContactPointChanged(const QString &)));
 
 		connect(mSuccessor, SIGNAL(clicked(bool)), this, SLOT(SuccessorChanged(bool)));
 		connect(mSuccessorId, SIGNAL(editingFinished()), this, SLOT(SuccessorIdChanged()));
-		connect(mSuccessorType, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(SuccessorTypeChanged(const QString &)));
-		connect(mSuccessorContactPoint, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(SuccessorContactPointChanged(const QString &)));
+		connect(mSuccessorType, SIGNAL(currentTextChanged(const QString &)), this, SLOT(SuccessorTypeChanged(const QString &)));
+		connect(mSuccessorContactPoint, SIGNAL(currentTextChanged(const QString &)), this, SLOT(SuccessorContactPointChanged(const QString &)));
 
 		connect(mNeighbor1, SIGNAL(clicked(bool)), this, SLOT(Neighbor1Changed(bool)));
 		connect(mNeighbor1Id, SIGNAL(editingFinished()), this, SLOT(Neighbor1IdChanged()));
-		connect(mNeighbor1Side, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(Neighbor1SideChanged(const QString &)));
-		connect(mNeighbor1Direction, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(Neighbor1DirectionChanged(const QString &)));
+		connect(mNeighbor1Side, SIGNAL(currentTextChanged(const QString &)), this, SLOT(Neighbor1SideChanged(const QString &)));
+		connect(mNeighbor1Direction, SIGNAL(currentTextChanged(const QString &)), this, SLOT(Neighbor1DirectionChanged(const QString &)));
 
 		connect(mNeighbor2, SIGNAL(clicked(bool)), this, SLOT(Neighbor2Changed(bool)));
 		connect(mNeighbor2Id, SIGNAL(editingFinished()), this, SLOT(Neighbor2IdChanged()));
-		connect(mNeighbor2Side, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(Neighbor2SideChanged(const QString &)));
-		connect(mNeighbor2Direction, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(Neighbor2DirectionChanged(const QString &)));
+		connect(mNeighbor2Side, SIGNAL(currentTextChanged(const QString &)), this, SLOT(Neighbor2SideChanged(const QString &)));
+		connect(mNeighbor2Direction, SIGNAL(currentTextChanged(const QString &)), this, SLOT(Neighbor2DirectionChanged(const QString &)));
 	}
 }
 

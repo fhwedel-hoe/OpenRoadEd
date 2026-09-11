@@ -116,8 +116,8 @@ void SettingsLane::LoadData(Lane *lane)
 	{
 		// Disconnects the "value changed" signals while the values are loaded
 		disconnect(mId, SIGNAL(valueChanged(int)), this, SLOT(IdChanged(int)));
-		disconnect(mType, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(TypeChanged(const QString &)));
-		disconnect(mLevel, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(LevelChanged(const QString &)));
+		disconnect(mType, SIGNAL(currentTextChanged(const QString &)), this, SLOT(TypeChanged(const QString &)));
+		disconnect(mLevel, SIGNAL(currentTextChanged(const QString &)), this, SLOT(LevelChanged(const QString &)));
 		disconnect(mPredecessor, SIGNAL(clicked(bool)), this, SLOT(PredecessorChanged(bool)));
 		disconnect(mPredecessorId, SIGNAL(valueChanged(int)), this, SLOT(PredecessorIdChanged(int)));
 		disconnect(mSuccessor, SIGNAL(clicked(bool)), this, SLOT(SuccessorChanged(bool)));
@@ -164,8 +164,8 @@ void SettingsLane::LoadData(Lane *lane)
 
 		// Connects the "value changed" signals back
 		connect(mId, SIGNAL(valueChanged(int)), this, SLOT(IdChanged(int)));
-		connect(mType, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(TypeChanged(const QString &)));
-		connect(mLevel, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(LevelChanged(const QString &)));
+		connect(mType, SIGNAL(currentTextChanged(const QString &)), this, SLOT(TypeChanged(const QString &)));
+		connect(mLevel, SIGNAL(currentTextChanged(const QString &)), this, SLOT(LevelChanged(const QString &)));
 		connect(mPredecessor, SIGNAL(clicked(bool)), this, SLOT(PredecessorChanged(bool)));
 		connect(mPredecessorId, SIGNAL(valueChanged(int)), this, SLOT(PredecessorIdChanged(int)));
 		connect(mSuccessor, SIGNAL(clicked(bool)), this, SLOT(SuccessorChanged(bool)));

@@ -71,7 +71,7 @@ void SettingsJunctionConnection::LoadData(JunctionConnection *junctionConnection
 		disconnect(mId, SIGNAL(editingFinished()), this, SLOT(IdChanged()));
 		disconnect(mIncomingRoad, SIGNAL(editingFinished()), this, SLOT(IncomingRoadChanged()));
 		disconnect(mConnectingRoad, SIGNAL(editingFinished()), this, SLOT(ConnectingRoadChanged()));
-		disconnect(mContactPoint, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(ContactPointChanged(const QString &)));
+		disconnect(mContactPoint, SIGNAL(currentTextChanged(const QString &)), this, SLOT(ContactPointChanged(const QString &)));
 
 		// Sets the record properties to the input widgets
 		mJunctionConnection=junctionConnection;
@@ -86,7 +86,7 @@ void SettingsJunctionConnection::LoadData(JunctionConnection *junctionConnection
 		connect(mId, SIGNAL(editingFinished()), this, SLOT(IdChanged()));
 		connect(mIncomingRoad, SIGNAL(editingFinished()), this, SLOT(IncomingRoadChanged()));
 		connect(mConnectingRoad, SIGNAL(editingFinished()), this, SLOT(ConnectingRoadChanged()));
-		connect(mContactPoint, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(ContactPointChanged(const QString &)));
+		connect(mContactPoint, SIGNAL(currentTextChanged(const QString &)), this, SLOT(ContactPointChanged(const QString &)));
 	}
 }
 
