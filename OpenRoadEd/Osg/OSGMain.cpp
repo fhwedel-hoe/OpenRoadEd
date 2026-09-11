@@ -133,8 +133,11 @@ void OSGMain::initViewer(osgViewer::Viewer *viewer, int width, int height)
 	//mViewer->addEventHandler(new osgViewer::HelpHandler);
 
 
-	//Draw the grid
-	DrawGrid(MIN_GRID_X,MAX_GRID_X,GRID_COLLUMNS,MIN_GRID_Y,MAX_GRID_Y,GRID_ROWS);
+	// Note: no default grid is drawn here. MainWindow::readSettings() unconditionally
+	// (re)draws it right after construction via ReferencePlaneDialog::SetGridValues(),
+	// using the real (Settings.ini-backed) size - drawing a hardcoded placeholder here
+	// would just be overwritten by that, or (since this now runs asynchronously, once
+	// the widget's GL context is ready) overwrite the real one instead.
 
 	//Set light
 	AddLight();

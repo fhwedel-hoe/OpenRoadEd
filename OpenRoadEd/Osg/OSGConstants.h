@@ -44,18 +44,5 @@ const double ROADMARK_BROKEN_TILING=3.;
 
 
 
-//===============================
-//Grid Size
-//===============================
-const double MIN_GRID_X=0;
-const double MAX_GRID_X=100;
-const double MIN_GRID_Y=-50;
-const double MAX_GRID_Y=50;
-const double GRID_ROWS=10;
-const double GRID_COLLUMNS=10;
-
-
-
-
 
 #endif
