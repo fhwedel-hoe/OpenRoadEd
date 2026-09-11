@@ -263,7 +263,14 @@ void QOSGWidget::Pick(QMouseEvent *e)
 	// If the left mouse button was clicked - pick the closest object in 3D space under the mouse cursor
 	if(e->buttons()==Qt::LeftButton)
 	{
-		OSGObjectNode *lLastPicked = mOsgMain->PickNode(e->x(), height()-e->y());
+		// PickNode() calls straight into OSG's computeIntersections(), which measures
+		// against the camera's viewport - set up in physical/device pixels (see
+		// OSGRenderer::setupOSG()/resize(), which scale by devicePixelRatio()). Qt's own
+		// mouse coordinates and width()/height() are logical pixels, so they need the same
+		// scaling here (exactly like OSGRenderer's own event forwarding does via
+		// m_windowScale), or picking drifts off target whenever DPI scaling isn't 1:1.
+		qreal lScale = devicePixelRatioF();
+		OSGObjectNode *lLastPicked = mOsgMain->PickNode(e->x()*lScale, (height()-e->y())*lScale);
 
 		// If the picked object is not null - check it's type and select the object in road tree panel
   		if(lLastPicked!=NULL)
