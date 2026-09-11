@@ -1,22 +1,22 @@
 #ifndef QOSGWIDGET_H
 #define QOSGWIDGET_H
 
-#include <QtCore/QTimer>
 #include <QtWidgets>
 #include <QtGui/QMouseEvent>
-using Qt::WindowFlags;
+#include <osgQOpenGL/osgQOpenGLWidget>
 
 #include "Tree/RoadTree.h"
 #include "../Osg/OSGMain.h"
 
 /**
- * OSG widget class used as a 3D viewport
+ * OSG widget class used as a 3D viewport.
  *
- *
- *
- *
+ * Embeds OpenSceneGraph via osgQOpenGLWidget (from the osgQt submodule), which owns
+ * the OpenGL context/viewer and forwards Qt's own key/mouse events into OSG's event
+ * queue. This is what makes the custom camera manipulator's Space+mouse navigation
+ * actually receive events, regardless of window manager/focus quirks.
  */
-class QOSGWidget : public QWidget
+class QOSGWidget : public osgQOpenGLWidget
 {
 	Q_OBJECT
 
@@ -26,10 +26,8 @@ public:
 	 *
 	 * @param osgMain Pointer to the OSG object
 	 * @param parent Parent widget
-	 * @param name Name of the widget
-	 * @param f Windows flags, NULL for default flags
 	 */
-	QOSGWidget(OSGMain *osgMain, QWidget *parent = 0, const char * name = 0, WindowFlags f = Qt::Widget);
+	QOSGWidget(OSGMain *osgMain, QWidget *parent = nullptr);
 
 	/**
 	 * Initializes the OSG widget
@@ -38,35 +36,20 @@ public:
 	 */
 	void Init(RoadTree *roadTree);
 
-	void resizeEvent(QResizeEvent* event);
-
-	/**
-	 * Paint event, used to redraw the widget
-	 *
-	 * @param e Event object
-	 */
-	virtual void paintEvent(QPaintEvent *e);
-
 protected:
 
 	/**
-	 * Mouse events
+	 * Mouse events. Picks (when not navigating), then forwards to OSG.
 	 */
-	virtual void mousePressEvent(QMouseEvent *e);
-	virtual void mouseReleaseEvent(QMouseEvent *e);
-	
+	virtual void mousePressEvent(QMouseEvent *e) override;
+
 	/**
-	 * Keyboard events
+	 * Keyboard events. Tracks the "Camera mode" flag, then forwards to OSG.
 	 */
-	virtual void keyPressEvent(QKeyEvent *e);
-	virtual void keyReleaseEvent(QKeyEvent *e);
+	virtual void keyPressEvent(QKeyEvent *e) override;
+	virtual void keyReleaseEvent(QKeyEvent *e) override;
 
 private:
-
-	/**
-	 * Timer used to redraw the 3D viewport
-	 */
-	QTimer _timer;
 
 	/**
 	 * Pointer to road tree panel
@@ -82,11 +65,6 @@ private:
 	 * Flag to determine if "Camera mode" button is down
 	 */
 	bool mSpaceIsDown;
-
-	/**
-	 * Prevent flicker on Windows Qt
-	 */
-	QPaintEngine* paintEngine () const { return 0; }
 
 	/**
 	 * Picks the node under the mouse cursor and selects the coresponding object in road tree

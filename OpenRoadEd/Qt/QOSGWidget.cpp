@@ -8,14 +8,11 @@
  *
  * @param osgMain Pointer to the OSG object
  * @param parent Parent widget
- * @param name Name of the widget
- * @param f Windows flags, NULL for default flags
  */
-QOSGWidget::QOSGWidget(OSGMain *osgMain, QWidget * parent, const char * name, WindowFlags f):QWidget(parent, f)
+QOSGWidget::QOSGWidget(OSGMain *osgMain, QWidget * parent):osgQOpenGLWidget(parent)
 {
 	mOsgMain=osgMain;
-	connect(&_timer, SIGNAL(timeout()), this, SLOT(update()));
-	_timer.start(10);
+	mSpaceIsDown=false;
 }
 
 /**
@@ -28,53 +25,40 @@ void QOSGWidget::Init(RoadTree *roadTree)
 	// Saves the reference to the road tree panel
 	mRoadTree=roadTree;
 
-	// Updates the size of the 3D viewport
-	mOsgMain->initViewer(x(),y(),width(),height(),winId());
-
-	setAttribute(Qt::WA_PaintOnScreen);
-	setAttribute(Qt::WA_NoSystemBackground);
 	setFocusPolicy(Qt::ClickFocus);
-}
 
-void QOSGWidget::resizeEvent(QResizeEvent* event)
-{
-   QWidget::resizeEvent(event);
-   mOsgMain->setViewerRectangle(0,0,width(),height());
-}
-
-/**
- * Paint event, used to redraw the widget
- *
- * @param e Event object
- */
-void QOSGWidget::paintEvent(QPaintEvent *e)
-{
-	mOsgMain->frame();
+	// osgQOpenGLWidget only creates its osgViewer::Viewer once its GL context is ready
+	// (i.e. once the widget has actually been shown/painted), so the viewer can't be
+	// configured here yet - do it once the "initialized" signal fires instead.
+	connect(this, &osgQOpenGLWidget::initialized, this, [this]()
+	{
+		mOsgMain->initViewer(getOsgViewer(), width(), height());
+	});
 }
 
 /**
- * Mouse events. Checks if Space (camera mode) is not active and Picks an object in 3D
+ * Mouse events. Checks if Space (camera mode) is not active and Picks an object in 3D,
+ * then forwards the event to OSG so the camera manipulator sees it too.
  */
 void QOSGWidget::mousePressEvent(QMouseEvent *e)
 {
 	if(!mSpaceIsDown) Pick(e);
-}
-void QOSGWidget::mouseReleaseEvent(QMouseEvent *e)
-{
+	osgQOpenGLWidget::mousePressEvent(e);
 }
 
 /**
- * Keybpard events. Checks if Space is down and sets the camera mode flag to true/false
+ * Keyboard events. Tracks the "Camera mode" flag for picking purposes, then forwards
+ * the event to OSG - this is what lets the custom manipulator see the Space key.
  */
 void QOSGWidget::keyPressEvent(QKeyEvent *e)
 {
-	grabKeyboard();
 	if(e->key()==Qt::Key::Key_Space) mSpaceIsDown=true;
+	osgQOpenGLWidget::keyPressEvent(e);
 }
 void QOSGWidget::keyReleaseEvent(QKeyEvent *e)
 {
-	releaseKeyboard();
 	if(e->key()==Qt::Key::Key_Space) mSpaceIsDown=false;
+	osgQOpenGLWidget::keyReleaseEvent(e);
 }
 
 /**

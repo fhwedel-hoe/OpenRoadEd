@@ -437,7 +437,7 @@ void MainWindow::readSettings()
 	mReferencePlaneDialog->SetGridValues(lSGridRows, lSGridCollumns, lSGridMinX, lSGridMinY, lSGridMaxX, lSGridMaxY);
 
 	// Sets the camera to it's home positon
-	mOsgMain->GetViewer()->home(); 
+	mOsgMain->Home();
 }
 
 /**
@@ -521,10 +521,9 @@ void MainWindow::openXML(const std::string fileName)
 	mOsgMain->DrawJunctions();
 
 	// Zooms the camera to capture the road
-	mOsgMain->GetViewer()->home(); 
+	mOsgMain->Home();
 
 	// Updates the rendering window
-	mOsgMain->frame();
 	mOSGViewer->update();
 	QApplication::processEvents();
 
@@ -613,8 +612,13 @@ void MainWindow::OnTakeScreenshot()
 	mOsgMain->ShowScenery(false);
 	mOsgMain->ShowRecordsHelpers(false);
 
-	// Takes a screenshot
+	// Takes a screenshot. TakeScreenshot() calls the viewer's frame() directly (rather
+	// than going through the widget's normal paintGL()), so it needs the GL context
+	// made current explicitly.
+	mOSGViewer->makeCurrent();
 	mOsgMain->TakeScreenshot();
+	mOSGViewer->doneCurrent();
+	mOSGViewer->update();
 
 	// Restores the helpers
 	mOsgMain->ShowChordLine(mChordlineShowHide->isChecked());

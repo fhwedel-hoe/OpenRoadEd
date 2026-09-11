@@ -137,7 +137,7 @@ set(TARGET_CPP "${CMAKE_SOURCE_DIR}/OpenDrive/OpenDriveXmlWriter.cpp"
 add_executable(OpenRoadEd main.cpp ${TARGET_H} ${TARGET_CPP})
 set_property(TARGET OpenRoadEd PROPERTY CXX_STANDARD 14)
 target_compile_definitions(OpenRoadEd PRIVATE NOGDI)
-target_link_libraries(OpenRoadEd ${OPENSCENEGRAPH_LIBRARIES} Qt6::Widgets Qt6::OpenGL Qt6::OpenGLWidgets Qt6::Gui Qt6::Core)
+target_link_libraries(OpenRoadEd osgQOpenGL ${OPENSCENEGRAPH_LIBRARIES} Qt6::Widgets Qt6::OpenGL Qt6::OpenGLWidgets Qt6::Gui Qt6::Core)
 
 target_include_directories(OpenRoadEd PRIVATE 
 ${OPENSCENEGRAPH_INCLUDE_DIRS}

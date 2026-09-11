@@ -12,8 +12,6 @@
 #include <osg/MatrixTransform>
 #include <osg/Notify>
 
-#include <osgQOpenGL/osgQOpenGLWidget>
-
 #include "OSGMain.h"
 #include "OSGCameraControls.h"
 #include "OSGCameraControls2.h"
@@ -25,21 +23,6 @@ using std::ifstream;
 using std::ofstream;
 using std::endl;
 using std::cout;
-
-// from interreality.org/bzroot/vos/s5.3/src/app/threedeeqt/QOSGWidget.cpp
-#if defined(WIN32) && !defined(__CYGWIN__)
-#include <osgViewer/api/Win32/GraphicsWindowWin32>
-typedef HWND WindowHandle;
-typedef osgViewer::GraphicsWindowWin32::WindowData WindowData;
-#elif defined(__APPLE__)
-#include <osgViewer/api/Carbon/GraphicsWindowCarbon>
-typedef WindowRef WindowHandle;
-typedef osgViewer::GraphicsWindowCarbon::WindowData WindowData;
-#else // all other unix
-#include <osgViewer/api/X11/GraphicsWindowX11>
-typedef Window WindowHandle;
-typedef osgViewer::GraphicsWindowX11::WindowData WindowData;
-#endif
 
 /**
 * Main Geometry generation class
@@ -100,26 +83,18 @@ OSGMain::OSGMain(OpenDrive* openDrive)
 }
 
 /**
-* Initialize the viewer
-* @param x,y Position of the viewer
-* @param width,height Dimensions of the viewer
-* @param window Window handler
+* Configures the viewer created by the embedding Qt widget (osgQOpenGLWidget): camera,
+* manipulators, event handlers and scene data. The graphics context and the camera's
+* viewport/graphics context are already set up by the widget itself.
+* @param viewer The viewer created by the embedding widget
+* @param width,height Initial dimensions of the viewport, used for the projection matrix
 */
-void OSGMain::initViewer(int x, int y, int width, int height, WId window)
+void OSGMain::initViewer(osgViewer::Viewer *viewer, int width, int height)
 {
-	mViewer = new osgViewer::Viewer;
-	mViewer->setKeyEventSetsDone(0);
-
-	createContext(x,y,width,height,window);
-
-	//std::cerr << "x: " << x << " y: " << y << " w: " << width << " h: " << height << std::endl;
-
-	//mViewer->setThreadingModel(osgViewer::Viewer::SingleThreaded);
+	mViewer = viewer;
 
 	//********************************  CAMERA
-	mViewer->getCamera()->setViewport(new osg::Viewport(0,0,width,height));
 	mViewer->getCamera()->setProjectionMatrixAsPerspective(30.0f, static_cast<double>(width)/static_cast<double>(height), 1.0f, 10000.0f);
-	mViewer->getCamera()->setGraphicsContext(mGw.get());
 	mViewer->getCamera()->setClearColor( osg::Vec4( 0.30, 0.36, 0.40, 1. ) );
 
 	//set the callback used to take the screenshot
@@ -171,9 +146,14 @@ void OSGMain::initViewer(int x, int y, int width, int height, WId window)
 	mViewer->getCameraManipulator()->setNode(mRoadsGroup);
 }
 
-void OSGMain::setViewerRectangle(int x, int y, int width, int height)
+/**
+* Null-safe home(): moves the camera to the home position, if the viewer is ready.
+* The viewer only exists once the embedding widget's GL context has been initialized,
+* which can happen after this is first called (e.g. for a file given on the command line).
+*/
+void OSGMain::Home()
 {
-    mGw->setWindowRectangle(x,y,width,height);
+	if (mViewer.valid()) mViewer->home();
 }
 
 /**
@@ -191,62 +171,12 @@ void OSGMain::loadModel(const std::string &filename)
 }
 
 /**
-* Draw/redraw the frame
+* Draw/redraw the frame. Null-safe: the viewer may not exist yet if called before the
+* embedding widget's GL context has been initialized (see Home()).
 */
 void OSGMain::frame()
 {
-	mViewer->frame();
-}
-
-
-/**
-* Creates the window context
-*/
-void OSGMain::createContext(int x, int y, int width, int height, WId window)
-{
-	// Sets the properties of the window and prepares it for renderin
-
-	osg::DisplaySettings* ds = osg::DisplaySettings::instance();
-
-	osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
-
-	traits->readDISPLAY();
-	if (traits->displayNum<0) traits->displayNum = 0;
-
-	traits->windowName = "osgViewerQt";
-	traits->screenNum = 0;
-	traits->x = x;
-	traits->y = y;
-	traits->width = width;
-	traits->height = height;
-	traits->alpha = ds->getMinimumNumAlphaBits();
-	traits->stencil = ds->getMinimumNumStencilBits();
-	traits->windowDecoration = false;
-	traits->doubleBuffer = true;
-	traits->sharedContext = 0;
-	traits->sampleBuffers = ds->getMultiSamples();
-	traits->samples = ds->getNumMultiSamples();
-	traits->supportsResize = true;
-	traits->inheritedWindowData = new WindowData(
-	#ifdef WIN32
-	(HWND)
-	#endif
-	window
-	);
-	if (ds->getStereo())
-	{
-		switch(ds->getStereoMode())
-		{
-		case(osg::DisplaySettings::QUAD_BUFFER): traits->quadBufferStereo = true; break;
-		case(osg::DisplaySettings::VERTICAL_INTERLACE):
-		case(osg::DisplaySettings::CHECKERBOARD):
-		case(osg::DisplaySettings::HORIZONTAL_INTERLACE): traits->stencil = 8; break;
-		default: break;
-		}
-	}
-
-	osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(traits.get());
-	mGw = dynamic_cast<osgViewer::GraphicsWindow*>(gc.get());
+	if (mViewer.valid()) mViewer->frame();
 }
 
 /**
@@ -780,9 +710,11 @@ void  OSGMain::DrawRecordHelpers()
 */
 void OSGMain::TakeScreenshot ()
 {
+	if (!mViewer.valid()) return;
+
 	//backup the viewer
 	osg::Matrixd matrix = mViewer->getCameraManipulator()->getMatrix();
-	
+
 	//move the camera to its default top position
 	mViewer->home();
 
@@ -790,9 +722,8 @@ void OSGMain::TakeScreenshot ()
 	frame();
 
 	//get the screen size and take the screenshot
-	int tmp=0, scrWidth=0, scrHeight=0;
-	mGw->getWindowRectangle(tmp,tmp,scrWidth,scrHeight);
-	mScreenshotRequest->TakeScreenshot( scrWidth ,scrHeight);
+	const osg::Viewport* viewport = mViewer->getCamera()->getViewport();
+	mScreenshotRequest->TakeScreenshot( viewport->width() ,viewport->height());
 
 	frame();
 

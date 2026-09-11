@@ -29,8 +29,6 @@
 #include "OSGJunction.h"
 #include "OSGRecordsHelpers.h"
 
-#include <QtGui/QtGui>
-
 class OSGScreenshotRequest;
 
 
@@ -45,10 +43,9 @@ class OSGMain
 {
 
 private:
-	// OSG Viewer
+	// OSG Viewer. Owned by the Qt widget that embeds the GL context (osgQOpenGLWidget);
+	// OSGMain only configures it once it exists.
 	osg::ref_ptr<osgViewer::Viewer> mViewer;
-	// Window
-	osg::ref_ptr<osgViewer::GraphicsWindow> mGw;
 	// OpenDrive reference
 	OpenDrive* mOpenDrive;
 	//Root OSG Node
@@ -87,12 +84,6 @@ public:
 	osg::Geometry::AttributeBinding mCurrentlySelectedBinding;
 
 
-private:
-	/**
-	*
-	*/
-    void createContext(int x, int y, int widht, int height, WId window);
-
 public:
 	//--------------
 	//Init
@@ -104,14 +95,19 @@ public:
 	*/
 	OSGMain(OpenDrive* openDriveIn);
 	/**
-	* Initialize the viewer
-	* @param x,y Position of the viewer
-	* @param width,height Dimensions of the viewer
-    * @param parent Parent widget
+	* Configures an already-constructed osgViewer::Viewer (graphics context, camera
+	* manipulators, scene data, ...). The viewer itself is created and owned by the
+	* Qt widget embedding the OpenGL context (osgQOpenGLWidget), which is why it is
+	* only available once that widget's GL context has been initialized.
+	* @param viewer The viewer created by the embedding widget
+	* @param width,height Initial dimensions of the viewport, used for the projection matrix
 	*/
-    void initViewer(int x, int y, int width, int height, WId window);
+    void initViewer(osgViewer::Viewer *viewer, int width, int height);
 
-    void setViewerRectangle(int x, int y, int width, int height);
+	/**
+	* Null-safe home(): moves the camera to the home position, if the viewer is ready.
+	*/
+	void Home();
 
 	/**
 	* Load a mode

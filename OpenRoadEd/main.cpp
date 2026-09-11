@@ -28,6 +28,11 @@ int main(int argc, char *argv[])
 	MainWindow mainWin(&mOsgMain, &mOpenDrive);
 	mainWin.show();
 
+	// Pump the event loop once so the 3D viewport's GL context gets initialized
+	// (and OSGMain::initViewer runs) before a file given on the command line is
+	// loaded below - that loading path expects the viewer to already exist.
+	app.processEvents();
+
 	// Hides the splash screen
 	splash.finish(&mainWin);
 
