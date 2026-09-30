@@ -23,7 +23,7 @@ distribution.
 */
 
 /*
- * THIS FILE WAS ALTERED BY Tyge Lovset, 7. April 2005.
+ * THIS FILE WAS ALTERED BY Tyge Løvset, 7. April 2005.
  *
  * - completely rewritten. compact, clean, and fast implementation.
  * - sizeof(TiXmlString) = pointer size (4 bytes on 32-bit systems)
