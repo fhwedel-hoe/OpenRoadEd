@@ -1,8 +1,8 @@
-# OpenRoadEd on Linux
+# OpenRoadEd
 
 OpenRoadEd is simple application designed to create both logical (OpenDRIVE standard) and geometrical (OpenSceneGraph) descriptions of road networks created by Dmitri and Egor Kurteanu. 
 
-This fork was adapted to compile on modern Linux operating systems by Hermann Höhne and Hamid Ebadi.
+This fork was adapted by Hermann Höhne and Hamid Ebadi to compile and run on modern versions of Linux as well as Windows.
 
 ![OpenRoadEdLinux](Screenshots/OpenRoadEdLinuxXodr.png)
 
